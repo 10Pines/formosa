@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 
-export class ValidatedTextField extends React.Component {
+export class ValidatedInput extends React.Component {
   constructor (props) {
     super(props);
     this.state = {};
@@ -42,16 +42,16 @@ export class ValidatedTextField extends React.Component {
             }
           }}
         />
-        <p> {this.state.error} </p>
+        <p>{this.state.error}</p>
       </div>
     );
   }
 }
 
-ValidatedTextField.contextTypes = { setInputState: PropTypes.func.isRequired };
-ValidatedTextField.propTypes = {
+ValidatedInput.contextTypes = { setInputState: PropTypes.func.isRequired };
+ValidatedInput.propTypes = {
   defaultValue: PropTypes.any,
-  name: PropTypes.any.isRequired,
+  name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   validation: PropTypes.func.isRequired,
