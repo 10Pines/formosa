@@ -65,7 +65,7 @@ describe('NestedForm', () => {
   it('validates its own state with the validation function', () => {
     const validCallback = jest.fn();
     const errorMessage = 'There is something wrong';
-    const wrapper = mount(
+    mount(
       <NestedForm 
         name='nested'
         validation={() => errorMessage}

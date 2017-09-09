@@ -3,11 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 
-const debug = (o) => {
-  console.log(o);
-  return o;
-}
-
 export class NestedForm extends React.Component {
   constructor (props) {
     super(props);
@@ -48,6 +43,7 @@ NestedForm.contextTypes = {
 };
 
 NestedForm.propTypes = {
+  children: PropTypes.node,
   name: PropTypes.string.isRequired,
   validation: PropTypes.func.isRequired,
 };
