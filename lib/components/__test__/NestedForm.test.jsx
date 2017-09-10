@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { ValidatedInput } from '../ValidatedInput';
-import { NestedForm } from '../NestedForm';
+import { ValidatedInput } from '../ValidatedInput.jsx';
+import { NestedForm } from '../NestedForm.jsx';
 import { notEmpty, noop } from '../../validations';
 
 describe('NestedForm', () => {

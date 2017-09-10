@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 
-import { ValidatedInput } from '../ValidatedInput';
-import { notEmpty, noop } from '../../validations';
+import { ValidatedInput } from '../ValidatedInput.jsx';
+import { notEmpty } from '../../validations';
 
 describe('ValidatedInput', () => {
   describe('on mount', () => {

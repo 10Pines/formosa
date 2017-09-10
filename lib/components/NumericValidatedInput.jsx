@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 
-export class ValidatedInput extends React.Component {
+export class NumericValidatedInput extends React.Component {
 
   static contextTypes = { 
     setInputState: PropTypes.func.isRequired
@@ -23,14 +23,14 @@ export class ValidatedInput extends React.Component {
   }
 
   componentDidMount () {
-    const value = this.props.value || this.props.defaultValue || '';
-    const error = this.props.validation(value);
+    const value = this.props.value || this.props.defaultValue || NaN;
+    const error = isNaN(value) ? 'The value is not a valid number' : this.props.validation(value);
 
     this.context.setInputState(this.props.name, value, R.isNil(error));
   }
 
   handleNewValue (value) {
-    const error = this.props.validation(value);
+    const error = isNaN(value) ? 'The value is not a valid number' : this.props.validation(value);
 
     this.context.setInputState(this.props.name, value, R.isNil(error));
     this.setState({ error });
@@ -44,13 +44,15 @@ export class ValidatedInput extends React.Component {
         <input
           {...props}
           onBlur={(evt) => {
-            this.handleNewValue(evt.target.value);
+            const number = !isNaN(evt.target.value) ? parseFloat(evt.target.value, 10) : NaN;
+            this.handleNewValue(number);
             if (this.props.onBlur) {
               this.props.onBlur(evt);
             }
           }}
           onChange={(evt, newValue) => {
-            this.handleNewValue(evt.target.value);
+            const number = !isNaN(evt.target.value) ? parseFloat(evt.target.value, 10) : NaN;
+            this.handleNewValue(number);
             if (this.props.onChange) {
               this.props.onChange(evt, newValue);
             }

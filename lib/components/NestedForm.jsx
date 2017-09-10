@@ -1,9 +1,24 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 
 export class NestedForm extends React.Component {
+
+
+  static contextTypes = { 
+    setInputState: PropTypes.func.isRequired 
+  };
+
+  static propTypes = {
+    children: PropTypes.node,
+    name: PropTypes.string.isRequired,
+    validation: PropTypes.func.isRequired,
+  };
+
+  static childContextTypes = { 
+    setInputState: PropTypes.func.isRequired 
+  };
+
   constructor (props) {
     super(props);
     this.state = {};
@@ -37,17 +52,3 @@ export class NestedForm extends React.Component {
     );
   }
 }
-
-NestedForm.contextTypes = { 
-  setInputState: PropTypes.func.isRequired 
-};
-
-NestedForm.propTypes = {
-  children: PropTypes.node,
-  name: PropTypes.string.isRequired,
-  validation: PropTypes.func.isRequired,
-};
-
-NestedForm.childContextTypes = { 
-  setInputState: PropTypes.func.isRequired 
-};

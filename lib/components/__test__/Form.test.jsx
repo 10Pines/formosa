@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 
-import { ValidatedInput } from '../ValidatedInput';
-import { Form } from '../Form';
+import { ValidatedInput } from '../ValidatedInput.jsx';
+import { Form } from '../Form.jsx';
 import { notEmpty, noop } from '../../validations';
+
 
 describe('Form', () => {
   describe('when a submit button is pressed', () => {

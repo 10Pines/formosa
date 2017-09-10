@@ -3,6 +3,17 @@ import PropTypes from 'prop-types';
 import R from 'ramda';
 
 export class Form extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    onInvalid: PropTypes.func,
+    onSubmit: PropTypes.func.isRequired,
+    onValid: PropTypes.func,
+  };
+
+  static childContextTypes = { 
+    setInputState: PropTypes.func.isRequired 
+  };
+
   constructor (props) {
     super(props);
     this.state = {};
@@ -38,14 +49,3 @@ export class Form extends React.Component {
     );
   }
 }
-
-Form.propTypes = {
-  children: PropTypes.node,
-  onInvalid: PropTypes.func,
-  onSubmit: PropTypes.func.isRequired,
-  onValid: PropTypes.func,
-};
-
-Form.childContextTypes = { 
-  setInputState: PropTypes.func.isRequired 
-};
