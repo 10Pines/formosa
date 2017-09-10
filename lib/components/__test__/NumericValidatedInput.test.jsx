@@ -18,11 +18,7 @@ describe('NumericValidatedInput', () => {
         });
 
       expect(validCallback.mock.calls.length).toBe(1);
-      expect(validCallback).toHaveBeenCalledWith(
-        'numericField',     // Name of the field
-        NaN,                // content of the field
-        false               // is it valid?
-      );
+      expect(validCallback).toHaveBeenCalledWith('numericField', NaN, false);
     });
   });
   describe('after a change to a valid number', () => {
@@ -39,17 +35,9 @@ describe('NumericValidatedInput', () => {
         }
       );
 
-      wrapper.find('input').simulate('change', {
-        target: {
-          value: '12'
-        }
-      });
+      wrapper.find('input').simulate('change', { target: { value: '12' } });
 
-      expect(validCallback).toHaveBeenLastCalledWith(
-        'numericField',     // Name of the field
-        12,                 // content of the field
-        true                // is it valid?
-      );
+      expect(validCallback).toHaveBeenLastCalledWith( 'numericField', 12, true);
     });
   });
   describe('after a change to an invalid number', () => {
@@ -66,17 +54,9 @@ describe('NumericValidatedInput', () => {
         }
       );
 
-      wrapper.find('input').simulate('change', {
-        target: {
-          value: '-12'
-        }
-      });
+      wrapper.find('input').simulate('change', { target: { value: '-12' } });
 
-      expect(validCallback).toHaveBeenLastCalledWith(
-        'numericField',      // Name of the field
-        -12,                 // content of the field
-        false                // is it valid?
-      );
+      expect(validCallback).toHaveBeenLastCalledWith('numericField', -12, false);
     });
   });
 });
