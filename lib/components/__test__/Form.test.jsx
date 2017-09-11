@@ -26,7 +26,7 @@ describe('Form', () => {
       const onInvalid = () => validChanges.push(false);
       const onValid = () => validChanges.push(true);
       mount(
-        <Form 
+        <Form
           onInvalid={onInvalid}
           onSubmit={onSubmit}
           onValid={onValid}
