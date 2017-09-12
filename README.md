@@ -10,7 +10,6 @@ The objective of this library is to make building dynamic forms with complex val
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmut = this.handleSubmit.bind(this)
     this.state = { isValid: false };
   }
 
