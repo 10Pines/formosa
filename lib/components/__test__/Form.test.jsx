@@ -6,7 +6,7 @@ import { Form } from '../Form.jsx';
 import { notEmpty, noop } from '../../validations';
 
 
-describe('Form', () => {
+describe('Form component', () => {
   describe('when a submit button is pressed', () => {
     it('calls onSubmit', () => {
       const onSubmit = jest.fn();
@@ -16,7 +16,10 @@ describe('Form', () => {
 
       wrapper.find('button').get(0).click();
 
-      expect(onSubmit).toBeCalled();
+      expect(onSubmit.mock.calls).toEqual([
+        // it was called only once with an empty object since no fields were declared
+        [{}],
+      ]);
     });
   });
   describe('when it has an invalid element', () => {
@@ -31,9 +34,9 @@ describe('Form', () => {
           onSubmit={onSubmit}
           onValid={onValid}
         >
-          <ValidatedInput 
-            name="field" 
-            validation={notEmpty} 
+          <ValidatedInput
+            name="field"
+            validation={notEmpty}
           />
         </Form>);
 
@@ -47,14 +50,14 @@ describe('Form', () => {
       const onInvalid = () => validChanges.push(false);
       const onValid = () => validChanges.push(true);
       mount(
-        <Form 
+        <Form
           onInvalid={onInvalid}
           onSubmit={onSubmit}
           onValid={onValid}
         >
-          <ValidatedInput 
+          <ValidatedInput
             name="field"
-            validation={noop} 
+            validation={noop}
           />
         </Form>);
 
@@ -68,18 +71,18 @@ describe('Form', () => {
       const onInvalid = () => isValid = false;
       const onValid = () => isValid = true;
       mount(
-        <Form 
+        <Form
           onInvalid={onInvalid}
           onSubmit={onSubmit}
           onValid={onValid}
         >
-          <ValidatedInput 
+          <ValidatedInput
             name="field"
-            validation={noop} 
+            validation={noop}
           />
-          <ValidatedInput 
+          <ValidatedInput
             name="otherField"
-            validation={notEmpty} 
+            validation={notEmpty}
           />
         </Form>);
 
@@ -93,16 +96,16 @@ describe('Form', () => {
       const onInvalid = () => isValid = false;
       const onValid = () => isValid = true;
       const wrapper = mount(
-        <Form 
+        <Form
           onInvalid={onInvalid}
           onSubmit={onSubmit}
           onValid={onValid}
         >
-          <ValidatedInput 
+          <ValidatedInput
             name="noopField"
-            validation={noop} 
+            validation={noop}
           />
-          <ValidatedInput 
+          <ValidatedInput
             name="notEmptyField"
             validation={notEmpty}
           />
@@ -118,11 +121,15 @@ describe('Form', () => {
 
       wrapper.find('button').get(0).click();
 
-      expect(isValid).toBe(true);
-      expect(onSubmit).toBeCalledWith({
-        noopField: '',
-        notEmptyField: 'hi'
-      });
+      expect(onSubmit.mock.calls).toEqual([
+        [
+          {
+            noopField: '',
+            notEmptyField: 'hi',
+          }
+        ]
+      ]);
+      expect(isValid).toBeTruthy();
     });
   });
 });

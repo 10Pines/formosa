@@ -1,8 +1,21 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 
-export class Form extends React.Component {
+import * as core from '../core';
+
+type Props = {
+    children: any,
+    onInvalid: () => void,
+    onSubmit: (any) => void,
+    onValid: () => void
+};
+type State = {
+  form: core.Form
+};
+
+export class Form extends React.Component<Props, State> {
   static propTypes = {
     children: PropTypes.node,
     onInvalid: PropTypes.func,
@@ -10,27 +23,39 @@ export class Form extends React.Component {
     onValid: PropTypes.func,
   };
 
-  static childContextTypes = { 
-    setInputState: PropTypes.func.isRequired 
+  static childContextTypes = {
+    registerField: PropTypes.func.isRequired
   };
 
-  constructor (props) {
+  constructor (props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      form: new core.Form(),
+    };
   }
 
   getChildContext () {
     return {
-      setInputState: (name, value, isValid) => {
-        this.setState({ [name]: { value, isValid } }, () => {
-          if (R.all(R.prop('isValid'), R.values(this.state))) {
-            this.props.onValid();
-          } else {
-            this.props.onInvalid();
-          }
-        });
+      registerField: (name: string, field: core.Field) => {
+        const notifyCallback = this.state.form.registerField(name, field);
+        this.refreshState();
+        // force redrawing of the screen
+        return (field: core.Field) => {
+          notifyCallback(field);
+          this.refreshState();
+        };
       }
     };
+  }
+
+  refreshState() {
+    this.setState(this.state, () => {
+      if (this.state.form.isValid()) {
+        this.props.onValid();
+      } else {
+        this.props.onInvalid();
+      }
+    });
   }
 
   render () {
@@ -41,7 +66,7 @@ export class Form extends React.Component {
         {...props}
         onSubmit={(evt) => {
           evt.preventDefault();
-          this.props.onSubmit(R.map(R.prop('value'), this.state));
+          this.props.onSubmit(this.state.form.getState());
         }}
       >
         {this.props.children}

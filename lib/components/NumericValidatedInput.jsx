@@ -1,10 +1,25 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 
-export class NumericValidatedInput extends React.Component {
+type Props = {
+    defaultValue?: number,
+    name: string,
+    onBlur?: (...any) => void,
+    onChange?: (...any) => void,
+    validation: number => ?string,
+    value: number,
+  };
 
-  static contextTypes = { 
+type State = {
+    value?: string,
+    error?: string | null
+}
+
+export class NumericValidatedInput extends React.Component<Props, State> {
+
+  static contextTypes = {
     setInputState: PropTypes.func.isRequired
   };
 
@@ -17,19 +32,19 @@ export class NumericValidatedInput extends React.Component {
     value: PropTypes.string,
   };
 
-  constructor (props) {
+  constructor (props: Props) {
     super(props);
     this.state = {};
   }
 
   componentDidMount () {
-    const value = this.props.value || this.props.defaultValue || NaN;
+    const value: number = this.props.value || this.props.defaultValue || NaN;
     const error = isNaN(value) ? 'The value is not a valid number' : this.props.validation(value);
 
     this.context.setInputState(this.props.name, value, R.isNil(error));
   }
 
-  handleNewValue (value) {
+  handleNewValue (value: number) {
     const error = isNaN(value) ? 'The value is not a valid number' : this.props.validation(value);
 
     this.context.setInputState(this.props.name, value, R.isNil(error));
@@ -44,14 +59,14 @@ export class NumericValidatedInput extends React.Component {
         <input
           {...props}
           onBlur={(evt) => {
-            const number = !isNaN(evt.target.value) ? parseFloat(evt.target.value, 10) : NaN;
+            const number = !isNaN(evt.target.value) ? parseFloat(evt.target.value) : NaN;
             this.handleNewValue(number);
             if (this.props.onBlur) {
               this.props.onBlur(evt);
             }
           }}
           onChange={(evt, newValue) => {
-            const number = !isNaN(evt.target.value) ? parseFloat(evt.target.value, 10) : NaN;
+            const number = !isNaN(evt.target.value) ? parseFloat(evt.target.value) : NaN;
             this.handleNewValue(number);
             if (this.props.onChange) {
               this.props.onChange(evt, newValue);

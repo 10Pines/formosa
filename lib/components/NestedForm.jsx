@@ -1,12 +1,22 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 
-export class NestedForm extends React.Component {
+import { Field } from '../core'
 
+type Props = {
+    name: string,
+    children: any,
+    validation: any => string | null
+};
+type State = {
+    field: Field
+};
 
-  static contextTypes = { 
-    setInputState: PropTypes.func.isRequired 
+export class NestedForm extends React.Component<Props, State> {
+  static contextTypes = {
+    setInputState: PropTypes.func.isRequired
   };
 
   static propTypes = {
@@ -15,18 +25,32 @@ export class NestedForm extends React.Component {
     validation: PropTypes.func.isRequired,
   };
 
-  static childContextTypes = { 
-    setInputState: PropTypes.func.isRequired 
+  static childContextTypes = {
+    registerField: PropTypes.func.isRequired
   };
 
-  constructor (props) {
+  constructor (props: Props) {
     super(props);
     this.state = {};
   }
 
   getChildContext () {
     return {
-      setInputState: (name, value, isValid) => {
+      registerField: (name: string, field: core.Field) => {
+        const notifyCallback = this.state.form.registerField(name, field);
+        this.refreshState();
+        // force redrawing of the screen
+        return (field: core.Field) => {
+          notifyCallback(field);
+          this.refreshState();
+        };
+      }
+    };
+  }
+
+  getChildContext () {
+    return {
+      registerField: (name: string, isValid: boolean) => {
         this.setState(
           state => ({ value: R.assoc(name, { value, isValid }, state.value) }),
           () => {
@@ -36,9 +60,20 @@ export class NestedForm extends React.Component {
 
             this.context.setInputState(this.props.name, stateObject, isValid);
             this.setState({ error });
-          });
+          }
+        );
       }
     };
+  }
+
+  refreshState() {
+    this.setState(this.state, () => {
+      if (this.state.form.isValid()) {
+        this.props.onValid();
+      } else {
+        this.props.onInvalid();
+      }
+    });
   }
 
   render () {

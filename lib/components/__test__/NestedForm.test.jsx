@@ -5,12 +5,14 @@ import { ValidatedInput } from '../ValidatedInput.jsx';
 import { NestedForm } from '../NestedForm.jsx';
 import { notEmpty, noop } from '../../validations';
 
+import { Form } from '../../core';
+
 describe('NestedForm', () => {
   describe('on mount', () => {
-    it('reports up the correct validation status', () => {
-      const validCallback = jest.fn();
+    it.only('reports up the correct validation status', () => {
+      let form = new Form();
       mount(
-        <NestedForm 
+        <NestedForm
           name='nested'
           validation={noop}
         >
@@ -20,22 +22,20 @@ describe('NestedForm', () => {
           />
         </NestedForm>, {
           context: {
-            setInputState: validCallback
+            registerField: form.registerField.bind(form)
           }
         });
 
-      expect(validCallback.mock.calls).toEqual([
-        [
-          'nested', { field: '' }, false
-        ]
-      ]);
+      expect(form.getState()).toEqual({
+        nested: { field: '' }
+      });
     });
   });
   describe('after a subfield gets valid', () => {
     it('reports up the correct validation status', () => {
       const validCallback = jest.fn();
       const wrapper = mount(
-        <NestedForm 
+        <NestedForm
           name='nested'
           validation={noop}
         >
@@ -66,7 +66,7 @@ describe('NestedForm', () => {
     const validCallback = jest.fn();
     const errorMessage = 'There is something wrong';
     mount(
-      <NestedForm 
+      <NestedForm
         name='nested'
         validation={() => errorMessage}
       >
@@ -90,7 +90,7 @@ describe('NestedForm', () => {
     const validCallback = jest.fn();
     const errorMessage = 'There is something wrong';
     const wrapper = mount(
-      <NestedForm 
+      <NestedForm
         id='nestedForm'
         name='nested'
         validation={() => errorMessage}

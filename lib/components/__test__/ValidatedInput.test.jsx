@@ -1,29 +1,40 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
+import { Form } from '../../core';
 import { ValidatedInput } from '../ValidatedInput.jsx';
 import { notEmpty } from '../../validations';
 
 describe('ValidatedInput', () => {
   describe('on mount', () => {
-    it('reports up the correct validation status', () => {
-      const validCallback = jest.fn();
+    it('registers itself with the form', () => {
+      const registerField = jest.fn();
       mount(
         <ValidatedInput
           name='field'
           validation={notEmpty}
-        />, {
-          context: {
-            setInputState: validCallback
-          }
-        });
+        />, { context: { registerField: registerField } });
 
-      expect(validCallback.mock.calls.length).toBe(1);
-      expect(validCallback).toHaveBeenCalledWith(
-        'field',     // Name of the field
-        '',          // content of the field
-        false        // is it valid?
-      );
+      expect(registerField.mock.calls.length).toBe(1);
+      expect(registerField.mock.calls[0][0]).toEqual('field');
+    });
+  });
+
+  describe('After modification', () => {
+    it('notifies the form', () => {
+      let form = new Form();
+
+      const wrapper = mount(
+        <ValidatedInput
+          name='field'
+          validation={notEmpty}
+        />, { context: { registerField: form.registerField.bind(form) } });
+
+      wrapper.find('input').simulate('change', {
+        target: { value: 'hi' } });
+
+      expect(form.fields['field'].getError()).toBeNull();
+      expect(form.fields['field'].isValid()).toBe(true);
     });
   });
 
@@ -36,15 +47,12 @@ describe('ValidatedInput', () => {
           validation={(input) => errorMessage}
         />, {
           context: {
-            setInputState: jest.fn()
+            registerField: () => ({ notify: jest.fn() })
           }
         });
 
       wrapper.find('input').simulate('change', {
-        target: {
-          value: 'hi'
-        }
-      });
+        target: { value: 'hi' } });
 
       expect(wrapper.find('p').text()).toEqual(errorMessage);
     });
