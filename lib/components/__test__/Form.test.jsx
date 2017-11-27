@@ -18,16 +18,16 @@ describe('Form component', () => {
 
       expect(onSubmit.mock.calls).toEqual([
         // it was called only once with an empty object since no fields were declared
-        [{}],
+        [undefined],
       ]);
     });
   });
   describe('when it has an invalid element', () => {
     it('is not valid', () => {
-      let validChanges = [];
+      let validChanges = null;
       const onSubmit = jest.fn();
-      const onInvalid = () => validChanges.push(false);
-      const onValid = () => validChanges.push(true);
+      const onInvalid = () => validChanges = false;
+      const onValid = () => validChanges = true;
       mount(
         <Form
           onInvalid={onInvalid}
@@ -40,15 +40,15 @@ describe('Form component', () => {
           />
         </Form>);
 
-      expect(validChanges).toEqual([false]);
+      expect(validChanges).toEqual(false);
     });
   });
   describe('when it has a valid element', () => {
     it('is valid', () => {
-      let validChanges = [];
+      let isValid = null;
       const onSubmit = jest.fn();
-      const onInvalid = () => validChanges.push(false);
-      const onValid = () => validChanges.push(true);
+      const onInvalid = () => isValid = false;;
+      const onValid = () => isValid = true;
       mount(
         <Form
           onInvalid={onInvalid}
@@ -61,7 +61,7 @@ describe('Form component', () => {
           />
         </Form>);
 
-      expect(validChanges).toEqual([true]);
+      expect(isValid).toEqual(true);
     });
   });
   describe('when it has valid and invalid elements', () => {
@@ -86,7 +86,7 @@ describe('Form component', () => {
           />
         </Form>);
 
-      expect(isValid).toBeFalsy();
+      expect(isValid).toBe(false);
     });
   });
   describe('when I submit', () => {
@@ -114,10 +114,7 @@ describe('Form component', () => {
       );
 
       wrapper.find('[name="notEmptyField"]').simulate('change', {
-        target: {
-          value: 'hi'
-        }
-      });
+        target: {value: 'hi'}});
 
       wrapper.find('button').get(0).click();
 

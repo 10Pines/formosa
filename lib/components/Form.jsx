@@ -1,21 +1,15 @@
-// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
+import { observer, Provider } from 'mobx-react';
+import { observable, observe } from 'mobx';
 import R from 'ramda';
 
+import { formValidation } from '../validations';
 import * as core from '../core';
 
-type Props = {
-    children: any,
-    onInvalid: () => void,
-    onSubmit: (any) => void,
-    onValid: () => void
-};
-type State = {
-  form: core.Form
-};
 
-export class Form extends React.Component<Props, State> {
+@observer
+export class Form extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     onInvalid: PropTypes.func,
@@ -23,39 +17,22 @@ export class Form extends React.Component<Props, State> {
     onValid: PropTypes.func,
   };
 
-  static childContextTypes = {
-    registerField: PropTypes.func.isRequired
-  };
-
-  constructor (props: Props) {
+  constructor (props) {
     super(props);
     this.state = {
-      form: new core.Form(),
+      form: observable(new core.Form(formValidation)),
     };
-  }
+    observe(this.state.form, 'isValid', (change) => {
+      if (change.type !== 'update') {
+        return
+      };
 
-  getChildContext () {
-    return {
-      registerField: (name: string, field: core.Field) => {
-        const notifyCallback = this.state.form.registerField(name, field);
-        this.refreshState();
-        // force redrawing of the screen
-        return (field: core.Field) => {
-          notifyCallback(field);
-          this.refreshState();
-        };
-      }
-    };
-  }
-
-  refreshState() {
-    this.setState(this.state, () => {
-      if (this.state.form.isValid()) {
-        this.props.onValid();
+      if (change.newValue) {
+        if (this.props.onValid) this.props.onValid();
       } else {
-        this.props.onInvalid();
+        if (this.props.onInvalid) this.props.onInvalid();
       }
-    });
+    }, true);
   }
 
   render () {
@@ -66,10 +43,15 @@ export class Form extends React.Component<Props, State> {
         {...props}
         onSubmit={(evt) => {
           evt.preventDefault();
-          this.props.onSubmit(this.state.form.getState());
+          this.props.onSubmit(this.state.form.value);
         }}
       >
-        {this.props.children}
+        <Provider form={this.state.form}>
+          <div>
+            {this.props.children}
+          </div>
+        </Provider>
+        <pre>{JSON.stringify(this.state.form.value, null, 2)}</pre>
       </form>
     );
   }

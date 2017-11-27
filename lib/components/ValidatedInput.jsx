@@ -1,56 +1,41 @@
-// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
+import { observer, inject } from 'mobx-react';
 
 import { Field } from '../core';
 
-type Props = {
-  defaultValue?: string,
-  name: string,
-  onBlur?: (...any) => void,
-  onChange?: (...any) => void,
-  validation: string => ?string
-};
-
-type State = {
-  field: Field,
-  fieldCallback: (Field) => void,
-};
-
-export class ValidatedInput extends React.Component<Props, State> {
-
-  static contextTypes = {
-    registerField: PropTypes.func.isRequired
-  };
+@inject('form')
+@observer
+export class ValidatedInput extends React.Component {
 
   static propTypes = {
     defaultValue: PropTypes.any,
+    form: PropTypes.object,
     name: PropTypes.string.isRequired,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
-    validation: PropTypes.func.isRequired,
+    validation: PropTypes.object.isRequired,
   };
 
-  constructor (props: Props, { registerField }: { registerField: (string, Field) => ((Field) => void)}) {
+  constructor(props) {
     super(props);
     this.state = {
-      field: new Field('', props.validation)
+      field: new Field(this.props.validation, '')
     };
   }
 
   componentWillMount() {
-    this.setState({ fieldCallback: this.context.registerField(this.props.name, this.state.field) });
+    this.props.form.registerField(this.props.name, this.state.field);
   }
 
-  handleNewValue (value: string) {
-    const field: Field<string> = new Field(value, this.props.validation);
-    this.state.fieldCallback(field);
-    this.setState({ field });
+  handleNewValue (value) {
+    this.state.field.input = value;
   }
 
   render () {
     const props = R.omit(['validation', 'onValid'], this.props);
+    const { field } = this.state
 
     return (
       <div>
@@ -58,18 +43,14 @@ export class ValidatedInput extends React.Component<Props, State> {
           {...props}
           onBlur={(evt) => {
             this.handleNewValue(evt.target.value);
-            if (this.props.onBlur) {
-              this.props.onBlur(evt);
-            }
+            if (this.props.onBlur) {this.props.onBlur(evt);}
           }}
           onChange={(evt, newValue) => {
             this.handleNewValue(evt.target.value);
-            if (this.props.onChange) {
-              this.props.onChange(evt, newValue);
-            }
+            if (this.props.onChange) {this.props.onChange(evt, newValue);}
           }}
         />
-        <p>{this.state.field.getError()}</p>
+        {!field.isValid && field.wasTouched ? <p>{field.errorMessage}</p> : null}
       </div>
     );
   }

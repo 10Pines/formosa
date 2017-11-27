@@ -3,16 +3,16 @@ import { mount } from 'enzyme';
 
 import { ValidatedInput } from '../ValidatedInput.jsx';
 import { NestedForm } from '../NestedForm.jsx';
-import { notEmpty, noop } from '../../validations';
-
+import { notEmpty, noop, formValidation, never } from '../../validations';
 import { Form } from '../../core';
 
 describe('NestedForm', () => {
   describe('on mount', () => {
-    it.only('reports up the correct validation status', () => {
-      let form = new Form();
+    it('reports up the correct validation status', () => {
+      let form = new Form(formValidation);
       mount(
         <NestedForm
+          form={form}
           name='nested'
           validation={noop}
         >
@@ -20,22 +20,17 @@ describe('NestedForm', () => {
             name='field'
             validation={notEmpty}
           />
-        </NestedForm>, {
-          context: {
-            registerField: form.registerField.bind(form)
-          }
-        });
+        </NestedForm>);
 
-      expect(form.getState()).toEqual({
-        nested: { field: '' }
-      });
+      expect(form.isValid).toEqual(false);
     });
   });
   describe('after a subfield gets valid', () => {
     it('reports up the correct validation status', () => {
-      const validCallback = jest.fn();
+      let form = new Form(formValidation);
       const wrapper = mount(
         <NestedForm
+          form={form}
           name='nested'
           validation={noop}
         >
@@ -43,11 +38,7 @@ describe('NestedForm', () => {
             name='field'
             validation={notEmpty}
           />
-        </NestedForm>, {
-          context: {
-            setInputState: validCallback
-          }
-        });
+        </NestedForm>);
 
       wrapper.find('input').simulate('change', {
         target: {
@@ -55,62 +46,47 @@ describe('NestedForm', () => {
         }
       });
 
-      expect(validCallback).toHaveBeenLastCalledWith(
-        'nested',         // Name of the field
-        { field: 'hi' },  // content of the field
-        true             // is it valid?
-      );
+      expect(form.isValid).toBe(true);
+      expect(form.value).toEqual({
+        nested: { field: 'hi' }
+      });
     });
   });
   it('validates its own state with the validation function', () => {
-    const validCallback = jest.fn();
+    let form = new Form(formValidation);
     const errorMessage = 'There is something wrong';
     mount(
       <NestedForm
+        form={form}
         name='nested'
-        validation={() => errorMessage}
+        validation={never.withError(errorMessage)}
       >
         <ValidatedInput
           name='field'
           validation={noop}
         />
-      </NestedForm>, {
-        context: {
-          setInputState: validCallback
-        }
-      });
+      </NestedForm>);
 
-    expect(validCallback).toHaveBeenLastCalledWith(
-      'nested',         // Name of the field
-      { field: '' },    // content of the field
-      false             // is it valid?
-    );
+    expect(form.isValid).toBe(false);
+    expect(form.fields.get('nested').errorMessage).toEqual(errorMessage);
   });
   it('shows the error message', () => {
-    const validCallback = jest.fn();
+    let form = new Form(formValidation);
     const errorMessage = 'There is something wrong';
     const wrapper = mount(
       <NestedForm
+        form={form}
         id='nestedForm'
         name='nested'
-        validation={() => errorMessage}
+        validation={never.withError(errorMessage)}
       >
         <ValidatedInput
           name='field'
           validation={noop}
         />
-      </NestedForm>, {
-        context: {
-          setInputState: validCallback
-        }
-      });
+      </NestedForm>);
 
+    expect(form.isValid).toEqual(false);
     expect(wrapper.find('#nestedForm > p').text()).toEqual(errorMessage);
-
-    expect(validCallback).toHaveBeenLastCalledWith(
-      'nested',         // Name of the field
-      { field: '' },    // content of the field
-      false             // is it valid?
-    );
   });
 });

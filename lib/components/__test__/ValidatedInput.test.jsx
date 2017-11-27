@@ -3,58 +3,76 @@ import { mount } from 'enzyme';
 
 import { Form } from '../../core';
 import { ValidatedInput } from '../ValidatedInput.jsx';
-import { notEmpty } from '../../validations';
+import { notEmpty, noop, never, formValidation } from '../../validations';
 
 describe('ValidatedInput', () => {
   describe('on mount', () => {
     it('registers itself with the form', () => {
-      const registerField = jest.fn();
+      const form = new Form(formValidation);
       mount(
         <ValidatedInput
+          form={form}
           name='field'
-          validation={notEmpty}
-        />, { context: { registerField: registerField } });
+          validation={noop}
+        />);
 
-      expect(registerField.mock.calls.length).toBe(1);
-      expect(registerField.mock.calls[0][0]).toEqual('field');
+      expect(form.isValid).toBe(true);
+      expect(form.value).toEqual({
+        field: ''
+      });
     });
   });
 
   describe('After modification', () => {
     it('notifies the form', () => {
-      let form = new Form();
+      let form = new Form(formValidation);
 
       const wrapper = mount(
         <ValidatedInput
+          form={form}
           name='field'
           validation={notEmpty}
-        />, { context: { registerField: form.registerField.bind(form) } });
+        />);
 
       wrapper.find('input').simulate('change', {
         target: { value: 'hi' } });
 
-      expect(form.fields['field'].getError()).toBeNull();
-      expect(form.fields['field'].isValid()).toBe(true);
+      expect(form.isValid).toBe(true);
+      expect(form.fields.get('field').isValid).toBe(true);
+      expect(form.fields.get('field').value).toBe('hi');
     });
   });
 
   describe('After modification', () => {
     it('shows the error message', () => {
-      const errorMessage = 'Something is wrong';
+      const errorMessage = 'Some error happened';
+      let form = new Form(formValidation);
+
       const wrapper = mount(
         <ValidatedInput
+          form={form}
           name='field'
-          validation={(input) => errorMessage}
-        />, {
-          context: {
-            registerField: () => ({ notify: jest.fn() })
-          }
-        });
+          validation={never.withError(errorMessage)}
+        />);
 
       wrapper.find('input').simulate('change', {
         target: { value: 'hi' } });
 
       expect(wrapper.find('p').text()).toEqual(errorMessage);
     });
+  });
+
+  it('shows the error message', () => {
+    const errorMessage = 'Some error happened';
+    let form = new Form(formValidation);
+
+    const wrapper = mount(
+      <ValidatedInput
+        form={form}
+        name='field'
+        validation={never.withError(errorMessage)}
+      />);
+
+    expect(wrapper.contains('p')).toBe(false);
   });
 });

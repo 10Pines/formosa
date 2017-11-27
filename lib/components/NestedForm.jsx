@@ -1,77 +1,36 @@
-// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import R from 'ramda';
+import { observer, inject, Provider } from 'mobx-react';
+import { autorun } from 'mobx';
 
-import { Field } from '../core'
+import { formValidation, noop } from '../validations';
+import { Form } from '../core';
 
-type Props = {
-    name: string,
-    children: any,
-    validation: any => string | null
-};
-type State = {
-    field: Field
-};
-
-export class NestedForm extends React.Component<Props, State> {
-  static contextTypes = {
-    setInputState: PropTypes.func.isRequired
-  };
-
+@inject('form')
+@observer
+export class NestedForm extends React.Component {
   static propTypes = {
     children: PropTypes.node,
+    form: PropTypes.object,
     name: PropTypes.string.isRequired,
-    validation: PropTypes.func.isRequired,
+    validation: PropTypes.object.isRequired,
   };
 
-  static childContextTypes = {
-    registerField: PropTypes.func.isRequired
-  };
-
-  constructor (props: Props) {
+  constructor (props) {
     super(props);
-    this.state = {};
-  }
-
-  getChildContext () {
-    return {
-      registerField: (name: string, field: core.Field) => {
-        const notifyCallback = this.state.form.registerField(name, field);
-        this.refreshState();
-        // force redrawing of the screen
-        return (field: core.Field) => {
-          notifyCallback(field);
-          this.refreshState();
-        };
-      }
+    this.state = {
+      form: new Form(formValidation.then(this.props.validation))
     };
   }
 
-  getChildContext () {
-    return {
-      registerField: (name: string, isValid: boolean) => {
-        this.setState(
-          state => ({ value: R.assoc(name, { value, isValid }, state.value) }),
-          () => {
-            const stateObject = R.map(R.prop('value'), this.state.value);
-            const error = this.props.validation(this.state.value);
-            const isValid = R.all(R.prop('isValid'), R.values(this.state.value)) && R.isNil(error);
-
-            this.context.setInputState(this.props.name, stateObject, isValid);
-            this.setState({ error });
-          }
-        );
-      }
-    };
-  }
-
-  refreshState() {
-    this.setState(this.state, () => {
-      if (this.state.form.isValid()) {
-        this.props.onValid();
+  componentWillMount() {
+    this.props.form.registerField(this.props.name, this.state.form);
+    autorun(() => {
+      if (this.state.form.isValid) {
+        if (this.props.onValid) this.props.onValid();
       } else {
-        this.props.onInvalid();
+        if (this.props.onInvalid) this.props.onInvalid();
       }
     });
   }
@@ -80,10 +39,13 @@ export class NestedForm extends React.Component<Props, State> {
     const props = R.omit(['validation'], this.props);
 
     return (
-      <div {...props}>
-        {this.props.children}
-        <p>{this.state.error}</p>
-      </div>
+      <Provider form={this.state.form}>
+        <div {...props}>
+          {this.props.children}
+          {! this.state.form.isValid ?
+            <p>{this.state.form.errorMessage}</p> : null}
+        </div>
+      </Provider>
     );
   }
 }
