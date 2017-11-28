@@ -24,7 +24,7 @@ export class Form extends React.Component {
     };
     observe(this.state.form, 'isValid', (change) => {
       if (change.type !== 'update') {
-        return
+        return;
       };
 
       if (change.newValue) {
@@ -51,7 +51,6 @@ export class Form extends React.Component {
             {this.props.children}
           </div>
         </Provider>
-        <pre>{JSON.stringify(this.state.form.value, null, 2)}</pre>
       </form>
     );
   }
