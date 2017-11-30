@@ -1,3 +1,6 @@
 .babelrc
+
+node_modules
 lib
+examples
 CODE_OF_CONDUCT.md

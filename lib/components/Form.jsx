@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer, Provider } from 'mobx-react';
 import { observable, observe } from 'mobx';
-import R from 'ramda';
 
 import { formValidation } from '../validations';
-import * as core from '../core';
+import * as models from '../models';
 
 
 @observer
@@ -20,7 +19,7 @@ export class Form extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      form: observable(new core.Form(formValidation)),
+      form: observable(new models.Form(formValidation)),
     };
     observe(this.state.form, 'isValid', (change) => {
       if (change.type !== 'update') {
@@ -36,7 +35,9 @@ export class Form extends React.Component {
   }
 
   render () {
-    const props = R.omit(['validation', 'onValid'], this.props);
+    const props = Object.assign({}, this.props);
+    delete props.onValid;
+    delete props.validation;
 
     return (
       <form

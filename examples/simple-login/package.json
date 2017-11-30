@@ -7,9 +7,9 @@
     "start": "neutrino start --use neutrino-preset-react"
   },
   "dependencies": {
-    "mobx-react-devtools": "^4.2.15",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react-dom": "^16.1.1",
+    "formines": "0.1.1"
   },
   "devDependencies": {
     "neutrino": "^7.3.3",

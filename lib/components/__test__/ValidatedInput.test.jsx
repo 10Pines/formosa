@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { Form } from '../../core';
+import { Form } from '../../models';
 import { ValidatedInput } from '../ValidatedInput.jsx';
 import { notEmpty, noop, never, formValidation } from '../../validations';
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import R from 'ramda';
 import { observer, inject } from 'mobx-react';
 
-import { Field } from '../core';
+import { Field } from '../models';
 
 @inject('form')
 @observer
@@ -34,8 +33,10 @@ export class ValidatedInput extends React.Component {
   }
 
   render () {
-    const props = R.omit(['validation', 'onValid'], this.props);
     const { field } = this.state
+    const props = Object.assign({}, this.props);
+    delete props.onValid;
+    delete props.validation;
 
     return (
       <div>

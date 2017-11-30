@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Form, ValidatedInput } from 'formis';
-import { notEmpty, alpha, number, noop } from 'formis/dist/validations';
+import { Form, ValidatedInput } from 'formines';
+import { notEmpty, alpha, number, noop } from 'formines/validations';
 
 
 class LoginForm extends React.Component {

@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import R from 'ramda';
 import { observer, inject, Provider } from 'mobx-react';
 import { autorun } from 'mobx';
 
 import { formValidation, noop } from '../validations';
-import { Form } from '../core';
+import { Form } from '../models';
 
 @inject('form')
 @observer
@@ -36,7 +35,8 @@ export class NestedForm extends React.Component {
   }
 
   render () {
-    const props = R.omit(['validation'], this.props);
+    const props = Object.assign({}, this.props);
+    delete props.validation;
 
     return (
       <Provider form={this.state.form}>

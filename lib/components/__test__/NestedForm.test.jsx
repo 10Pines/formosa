@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import { ValidatedInput } from '../ValidatedInput.jsx';
 import { NestedForm } from '../NestedForm.jsx';
 import { notEmpty, noop, formValidation, never } from '../../validations';
-import { Form } from '../../core';
+import { Form } from '../../models';
 
 describe('NestedForm', () => {
   describe('on mount', () => {
