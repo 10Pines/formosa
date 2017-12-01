@@ -1,6 +1,6 @@
 {
   "name": "simple-login",
-  "version": "1.0.0",
+  "version": "0.1.2",
   "main": "src/index.jsx",
   "private": true,
   "license": "MIT",
@@ -8,9 +8,9 @@
     "start": "neutrino start --use neutrino-preset-react"
   },
   "dependencies": {
+    "formines": "^0.1.2",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "formines": "0.1.1"
+    "react-dom": "^16.1.1"
   },
   "devDependencies": {
     "neutrino": "^7.3.3",
