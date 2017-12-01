@@ -2,6 +2,7 @@
   "name": "simple-login",
   "version": "1.0.0",
   "main": "src/index.jsx",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "start": "neutrino start --use neutrino-preset-react"

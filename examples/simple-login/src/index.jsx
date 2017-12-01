@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Form, ValidatedInput } from 'formines';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Form, ValidatedTextField, ValidatedToggle } from 'formines-material-ui';
 import { notEmpty, alpha, number, noop } from 'formines/validations';
 
 
@@ -34,24 +35,30 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <Form
-        onInvalid={() => this.setState({ isValid: false })}
-        onSubmit={this.handleSubmit}
-        onValid={() => this.setState({ isValid: true })}
-      >
-        <ValidatedInput 
-          name="username" 
-          validation={notEmpty.and(alpha).withError("Please insert a valid username")} 
-        />
-        <ValidatedInput 
-          name="password" 
-          validation={notEmpty} 
-        />
-        <button 
-          disabled={!this.state.isValid}
-          type='submit' 
-        > LOGIN </button>
-      </Form>
+      <MuiThemeProvider>
+        <Form
+          onInvalid={() => this.setState({ isValid: false })}
+          onSubmit={this.handleSubmit}
+          onValid={() => this.setState({ isValid: true })}
+        >
+          <ValidatedTextField
+            name="username"
+            validation={notEmpty.and(alpha).withError("Please insert a valid username")}
+          />
+          <ValidatedTextField
+            name="password"
+            validation={notEmpty}
+          />
+          <ValidatedToggle
+            name="isAdmin"
+            validation={noop}
+          />
+          <button
+            disabled={!this.state.isValid}
+            type='submit'
+          > LOGIN </button>
+        </Form>
+      </MuiThemeProvider>
     );
   }
 }
