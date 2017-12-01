@@ -15,9 +15,7 @@ module.exports = {
   ValidatedToggle: connectField(({ errorMessage, onChange, ...props }) => (
     <Toggle
       {...props}
-      onToggle={(evt, isChecked) => {
-        onChange({ target: { value: isChecked } });
-      }}
+      onToggle={onChange}
     />
   ))
 };

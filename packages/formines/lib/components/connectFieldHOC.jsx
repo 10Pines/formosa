@@ -27,8 +27,14 @@ export const connectField = (Component) => {
       this.props.form.registerField(this.props.name, this.state.field);
     }
   
-    handleNewValue (value) {
-      this.state.field.input = value;
+    handleNewValue (evt, newValue) {
+      if (newValue !== undefined) {
+        this.state.field.input = newValue;
+      } else if (evt.target.type === 'checkbox') {
+        this.state.field.input = evt.target.checked;
+      } else {
+        this.state.field.input = evt.target.value;
+      }
     }
   
     render () {
@@ -44,10 +50,10 @@ export const connectField = (Component) => {
       return (
         <Component
           {...props}
-          onChange={(evt) => {
-            this.handleNewValue(evt.target.value);
+          onChange={(evt, newValue) => {
+            this.handleNewValue(evt, newValue);
             if (this.props.onChange) {
-              this.props.onChange(evt);
+              this.props.onChange(evt, newValue);
             }
           }}
         />
@@ -57,4 +63,3 @@ export const connectField = (Component) => {
   Wrapper.displayName = `formines-field-${Component.displayName}`;
   return Wrapper;
 }
-
