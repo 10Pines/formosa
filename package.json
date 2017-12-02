@@ -2,6 +2,7 @@
   "name": "formines",
   "version": "0.1.1",
   "description": "Simple and composable validations for react",
+  "url" : "https://github.com/10Pines/formines",
   "scripts": {
     "publish": "lerna publish"
   },
