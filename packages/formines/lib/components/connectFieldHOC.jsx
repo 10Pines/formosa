@@ -36,6 +36,10 @@ export const connectField = (Component) => {
         this.state.field.input = evt.target.value;
       }
     }
+
+    componentWillUnmount() {
+      this.state.field.delete();
+    }
   
     render () {
       const { field } = this.state

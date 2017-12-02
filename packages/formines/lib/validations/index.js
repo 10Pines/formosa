@@ -108,7 +108,7 @@ export class AlphaValidation extends Validation {
   }
 }
 
-export class NotEmptyValidation extends Validation<string, string> {
+export class NotEmptyValidation extends Validation{
   validate(originalValue) {
     if (originalValue === '') {
       return error(`This field can't be empty`);
@@ -122,7 +122,7 @@ export class FloatValidation extends Validation {
   validate(originalValue) {
     let number = Number(originalValue);
     if (Number.isNaN(number)) {
-      return error('The input muest be a number');
+      return error('The input must be a number');
     } else {
       return success(number);
     }
