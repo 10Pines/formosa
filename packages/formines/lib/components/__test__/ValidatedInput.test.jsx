@@ -11,7 +11,7 @@ describe('ValidatedInput', () => {
       const form = new Form(formValidation);
       mount(
         <ValidatedInput
-          form={form}
+          formines_form={form}
           name='field'
           validation={noop}
         />);
@@ -29,7 +29,7 @@ describe('ValidatedInput', () => {
 
       const wrapper = mount(
         <ValidatedInput
-          form={form}
+          formines_form={form}
           name='field'
           validation={notEmpty}
         />);
@@ -50,7 +50,7 @@ describe('ValidatedInput', () => {
 
       const wrapper = mount(
         <ValidatedInput
-          form={form}
+          formines_form={form}
           name='field'
           validation={never.withError(errorMessage)}
         />);
@@ -68,7 +68,7 @@ describe('ValidatedInput', () => {
 
     const wrapper = mount(
       <ValidatedInput
-        form={form}
+        formines_form={form}
         name='field'
         validation={never.withError(errorMessage)}
       />);

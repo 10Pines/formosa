@@ -12,7 +12,7 @@ describe('NestedForm', () => {
       let form = new Form(formValidation);
       mount(
         <NestedForm
-          form={form}
+          formines_form={form}
           name='nested'
           validation={noop}
         >
@@ -30,7 +30,7 @@ describe('NestedForm', () => {
       let form = new Form(formValidation);
       const wrapper = mount(
         <NestedForm
-          form={form}
+          formines_form={form}
           name='nested'
           validation={noop}
         >
@@ -57,7 +57,7 @@ describe('NestedForm', () => {
     const errorMessage = 'There is something wrong';
     mount(
       <NestedForm
-        form={form}
+        formines_form={form}
         name='nested'
         validation={never.withError(errorMessage)}
       >
@@ -75,7 +75,7 @@ describe('NestedForm', () => {
     const errorMessage = 'There is something wrong';
     const wrapper = mount(
       <NestedForm
-        form={form}
+        formines_form={form}
         id='nestedForm'
         name='nested'
         validation={never.withError(errorMessage)}

@@ -38,6 +38,7 @@ export class Form extends React.Component {
     const props = Object.assign({}, this.props);
     delete props.onValid;
     delete props.validation;
+    delete props.formines_form;
 
     return (
       <form
@@ -47,7 +48,7 @@ export class Form extends React.Component {
           this.props.onSubmit(this.state.form.value);
         }}
       >
-        <Provider form={this.state.form}>
+        <Provider formines_form={this.state.form}>
           <div>
             {this.props.children}
           </div>

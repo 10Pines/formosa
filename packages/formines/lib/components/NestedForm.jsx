@@ -6,12 +6,12 @@ import { autorun } from 'mobx';
 import { formValidation, noop } from '../validations';
 import { Form } from '../models';
 
-@inject('form')
+@inject('formines_form')
 @observer
 export class NestedForm extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    form: PropTypes.object,
+    formines_form: PropTypes.object,
     name: PropTypes.string.isRequired,
     validation: PropTypes.object.isRequired,
   };
@@ -24,7 +24,7 @@ export class NestedForm extends React.Component {
   }
 
   componentWillMount() {
-    this.props.form.registerField(this.props.name, this.state.form);
+    this.props.formines_form.registerField(this.props.name, this.state.form);
     autorun(() => {
       if (this.state.form.isValid) {
         if (this.props.onValid) this.props.onValid();
@@ -37,9 +37,10 @@ export class NestedForm extends React.Component {
   render () {
     const props = Object.assign({}, this.props);
     delete props.validation;
+    delete props.formines_form;
 
     return (
-      <Provider form={this.state.form}>
+      <Provider formines_form={this.state.form}>
         <div {...props}>
           {this.props.children}
           {! this.state.form.isValid ?

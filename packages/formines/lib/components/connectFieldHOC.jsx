@@ -5,11 +5,11 @@ import { observer, inject } from 'mobx-react';
 import { Field } from '../models';
 
 export const connectField = (Component) => {
-  @inject('form') @observer class Wrapper extends React.Component {
+  @inject('formines_form') @observer class Wrapper extends React.Component {
   
     static propTypes = {
       defaultValue: PropTypes.any,
-      form: PropTypes.object,
+      formines_form: PropTypes.object,
       name: PropTypes.string.isRequired,
       onChange: PropTypes.func,
       validation: PropTypes.object.isRequired,
@@ -24,7 +24,7 @@ export const connectField = (Component) => {
     }
   
     componentWillMount() {
-      this.props.form.registerField(this.props.name, this.state.field);
+      this.props.formines_form.registerField(this.props.name, this.state.field);
     }
   
     handleNewValue (evt, newValue) {
@@ -50,6 +50,7 @@ export const connectField = (Component) => {
       delete props.onValid;
       delete props.onChange;
       delete props.validation;
+      delete props.formines_form;
   
       return (
         <Component
