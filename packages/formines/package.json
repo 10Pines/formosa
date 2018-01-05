@@ -1,6 +1,6 @@
 {
   "name": "formines",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Simple and composable validations for react",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
