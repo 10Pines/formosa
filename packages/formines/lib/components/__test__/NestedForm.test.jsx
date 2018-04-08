@@ -15,6 +15,7 @@ describe('NestedForm', () => {
       id='nestedForm'
       name='nested'
       validation={validation}
+      errorsComponent={({errors}) => <div className="myErrors">{errors}</div>}
     >
       <ValidatedInput
         name='field'
@@ -24,10 +25,10 @@ describe('NestedForm', () => {
   );
   describe('on mount', () => {
     it('reports up the correct validation status', () => {
+
       expect(form.isValid).toEqual(false);
     });
   });
-
   describe('after a subfield gets valid', () => {
     beforeEach(() => {
       wrapper.find('input')
@@ -49,24 +50,22 @@ describe('NestedForm', () => {
       );
 
       it('does not render the error message', () => {
-        expect(wrapper.find('p.error-message')).toHaveLength(0);
+        expect(wrapper.find('div.myErrors')).toHaveLength(0);
       });
 
       describe('after it was touched', () => {
         beforeEach(() => {
           wrapper.find('input').simulate('change', {target: {value: 'hi'}});
         });
-
         it('shows the error message', () => {
-          expect(wrapper.find('p.error-message').text()).toEqual(errorMessage);
+          expect(wrapper.find('div.myErrors').text()).toEqual(errorMessage);
         });
         describe('after its value gets valid', () => {
           beforeEach(() => {
             wrapper.find('input').simulate('change', {target: {value: 'hello'}});
           });
-
           it('shows no error message', () => {
-            expect(wrapper.find('p.error-message')).toHaveLength(0);
+            expect(wrapper.find('div.myErrors')).toHaveLength(0);
           });
         });
       });
