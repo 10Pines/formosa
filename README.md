@@ -1,8 +1,11 @@
 # React copmosable validations
 
+[![Travis](https://img.shields.io/travis/10pines/formines.svg)](https://travis-ci.org/10Pines/formines)
+[![npm](https://img.shields.io/npm/v/formines.svg)](https://www.npmjs.com/package/formines)
+
 ## What?
 
-The objective of this library is to make building dynamic forms with complex validations easier leveraging some of react's hidden features.
+The objective of this library is to make building dynamic forms with complex validations easier leveraging MobX
 
 ## Example
 

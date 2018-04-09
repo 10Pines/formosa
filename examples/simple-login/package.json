@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "neutrino start --use neutrino-preset-react"
+    "start": "neutrino start --use @neutrinojs/react"
   },
   "dependencies": {
     "formines": "^0.3.0",
@@ -13,7 +13,7 @@
     "react-dom": "^16.1.1"
   },
   "devDependencies": {
-    "neutrino": "^7.3.3",
-    "neutrino-preset-react": "^7.3.3"
+    "@neutrinojs/react": "^8.0.14",
+    "neutrino": "^8.0.14"
   }
 }
