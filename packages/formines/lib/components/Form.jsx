@@ -41,19 +41,17 @@ export class Form extends React.Component {
     delete props.formines_form;
 
     return (
-      <form
-        {...props}
-        onSubmit={(evt) => {
-          evt.preventDefault();
-          this.props.onSubmit(this.state.form.value);
-        }}
-      >
-        <Provider formines_form={this.state.form}>
-          <div>
-            {this.props.children}
-          </div>
-        </Provider>
-      </form>
+      <Provider formines_form={this.state.form}>
+        <form
+          {...props}
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            this.props.onSubmit(this.state.form.value);
+          }}
+        >
+          {this.props.children}
+        </form>
+      </Provider>
     );
   }
 }

@@ -14,7 +14,7 @@ describe('Form component', () => {
         <button type="submit" />
       </Form>);
 
-      wrapper.find('button').get(0).click();
+      wrapper.find('button').simulate('submit');
 
       expect(onSubmit.mock.calls).toEqual([
         // it was called only once with an empty object since no fields were declared
@@ -113,10 +113,10 @@ describe('Form component', () => {
         </Form>
       );
 
-      wrapper.find('[name="notEmptyField"]').simulate('change', {
+      wrapper.find('input[name="notEmptyField"]').simulate('change', {
         target: {value: 'hi'}});
 
-      wrapper.find('button').get(0).click();
+      wrapper.find('button').simulate('submit');
 
       expect(onSubmit.mock.calls).toEqual([
         [

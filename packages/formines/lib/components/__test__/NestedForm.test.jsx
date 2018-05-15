@@ -86,7 +86,7 @@ describe('NestedForm', () => {
         />
       </NestedForm>);
 
-    expect(form.isValid).toEqual(false);
-    expect(wrapper.find('#nestedForm > p').text()).toEqual(errorMessage);
+    expect(form).toHaveProperty('isValid', false);
+    expect(wrapper.find('p.error-message').text()).toEqual(errorMessage);
   });
 });

@@ -44,7 +44,7 @@ export class NestedForm extends React.Component {
         <div {...props}>
           {this.props.children}
           {! this.state.form.isValid ?
-            <p>{this.state.form.errorMessage}</p> : null}
+            <p className='error-message' >{this.state.form.errorMessage}</p> : null}ss
         </div>
       </Provider>
     );
