@@ -1,6 +1,6 @@
 {
   "name": "formines-material-ui",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "material-ui components wrapped for formines",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
@@ -50,7 +50,7 @@
     "react-test-renderer": "^16.3.2"
   },
   "dependencies": {
-    "formines": "0.3.0",
+    "formines": "^0.4.0",
     "material-ui": "^0.20.1"
   }
 }
