@@ -1,53 +1,40 @@
 import { Form, Field } from '../';
-import { success, error, notEmpty, formValidation } from '../../validations';
-import { observable } from 'mobx';
+import { notEmpty, formValidation } from '../../validations';
 
 describe('form', () => {
-  let form;
-  beforeEach(() => {
-    form = new Form(formValidation);
-  });
+  set('form', () => new Form(formValidation));
+  subject(() => form);
 
   describe('with one valid field registered', () => {
-    let field;
+
+    set('field', () => new Field(notEmpty, 'hi'));
+
     beforeEach(() => {
-      field = new Field(notEmpty, 'hi');
       form.registerField('someName', field);
     });
 
-    it('is valid', () => {
-
-      expect(form.isValid).toBe(true);
-    });
+    its('isValid', () => isExpected.toBe(true));
 
     describe('after I unregister that field', () => {
-      beforeEach(() => {
-        field.delete();
-      });
-
-      it('removes that value from the form', () => {
+      beforeEach(() => field.delete());
+      it('becomes invalid', () => {
         expect(form.value).toEqual(undefined);
       });
     });
   });
 
   describe('with one invalid field registered', () => {
-    let field;
+    set('field', () => new Field(notEmpty, ''));
     beforeEach(() => {
-      field = new Field(notEmpty, '' );
       form.registerField('someName', field);
     });
 
-    it('is invalid', () => {
-      expect(form.isValid).toBe(false);
-    });
+    its('isValid', () => isExpected.toBe(false));
 
     describe('after updating the field to be valid', () => {
       beforeEach(() => { field.input = 'hi'; });
 
-      it('becomes valid', () => {
-        expect(form.isValid).toBe(true);
-      });
+      its('isValid', () => isExpected.toBe(true));
     });
   });
 });

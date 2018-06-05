@@ -27,6 +27,19 @@ export class Form {
     return this.validation.validate(this.fields);
   }
 
+  @computed get wasTouched() {
+    if (this.fields.size <= 0) {
+      return false;
+    }
+
+    for (const [name, field] of this.fields) {
+      if (! field.wasTouched) {
+        return false;
+      } 
+    }
+
+    return true;
+  }
 
   @computed get value() {
     return this.validationResult.value;

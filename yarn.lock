@@ -3659,7 +3659,7 @@ eslint-watch@^3.1.2:
     text-table "^0.2.0"
     unicons "0.0.3"
 
-eslint@^4.12.1, eslint@^4.6.1:
+eslint@^4.12.1, eslint@^4.19.1, eslint@^4.6.1:
   version "4.19.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.19.1.tgz#32d1d653e1d90408854bfb296f076ec7e186a300"
   dependencies:
@@ -5824,6 +5824,27 @@ jest-message-util@^22.4.3:
 jest-mock@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-22.4.3.tgz#f63ba2f07a1511772cdc7979733397df770aabc7"
+
+jest-plugin-action@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/jest-plugin-action/-/jest-plugin-action-2.9.0.tgz#027f3b91c39e0a492927b65dea90207db2c6b1be"
+  dependencies:
+    jest-plugin-set "^2.9.0"
+
+jest-plugin-its@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/jest-plugin-its/-/jest-plugin-its-2.9.0.tgz#c450891784710ec7314ba7ad18a68a061d40a2f8"
+  dependencies:
+    invariant "^2.2.2"
+    jest-plugin-set "^2.9.0"
+
+jest-plugin-set@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/jest-plugin-set/-/jest-plugin-set-2.9.0.tgz#95d4cb0e25e117b8a0b19846598887bf4bb95fca"
+
+jest-plugins@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/jest-plugins/-/jest-plugins-2.9.0.tgz#9323583ad9d5eaa321723d7601c16192bfcda7db"
 
 jest-regex-util@^22.4.3:
   version "22.4.3"

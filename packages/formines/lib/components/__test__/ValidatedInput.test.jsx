@@ -6,73 +6,54 @@ import { ValidatedInput } from '../ValidatedInput.jsx';
 import { notEmpty, noop, never, formValidation } from '../../validations';
 
 describe('ValidatedInput', () => {
+  set('form', () => new Form(formValidation));
+  set('wrapper', () => mount(
+    <ValidatedInput
+      formines_form={form}
+      name='field'
+      validation={validation}
+    />)
+  );
+  set('validation', () => noop);
+
   describe('on mount', () => {
     it('registers itself with the form', () => {
-      const form = new Form(formValidation);
-      mount(
-        <ValidatedInput
-          formines_form={form}
-          name='field'
-          validation={noop}
-        />);
+      wrapper;
 
       expect(form.isValid).toBe(true);
-      expect(form.value).toEqual({
-        field: ''
-      });
+      expect(form.value).toEqual({ field: '' });
     });
   });
 
   describe('After modification', () => {
-    it('notifies the form', () => {
-      let form = new Form(formValidation);
-
-      const wrapper = mount(
-        <ValidatedInput
-          formines_form={form}
-          name='field'
-          validation={notEmpty}
-        />);
-
+    beforeEach(() => {
       wrapper.find('input').simulate('change', {
         target: { value: 'hi' } });
-
+    })
+    it('notifies the form', () => {
       expect(form.isValid).toBe(true);
       expect(form.fields.get('field').isValid).toBe(true);
       expect(form.fields.get('field').value).toBe('hi');
     });
   });
 
-  describe('After modification', () => {
-    it('shows the error message', () => {
-      const errorMessage = 'Some error happened';
-      let form = new Form(formValidation);
+  describe('With never validations', () => {
+    set('errorMessage', () => 'Some error happened');
+    set('validation', () => never.withError(errorMessage));
 
-      const wrapper = mount(
-        <ValidatedInput
-          formines_form={form}
-          name='field'
-          validation={never.withError(errorMessage)}
-        />);
-
-      wrapper.find('input').simulate('change', {
-        target: { value: 'hi' } });
-
-      expect(wrapper.find('p').text()).toEqual(errorMessage);
+    it('does not show the error message', () => {
+      expect(wrapper.contains('p')).toBe(false);
     });
-  });
 
-  it('shows the error message', () => {
-    const errorMessage = 'Some error happened';
-    let form = new Form(formValidation);
+    describe('After modification', () => {
+      beforeEach(() => {
+        wrapper.find('input').simulate('change', {
+          target: { value: 'hi' } });
+      })
+      it('shows the error message', () => {
+        expect(wrapper.find('p').text()).toEqual(errorMessage);
+      });
+    });
 
-    const wrapper = mount(
-      <ValidatedInput
-        formines_form={form}
-        name='field'
-        validation={never.withError(errorMessage)}
-      />);
-
-    expect(wrapper.contains('p')).toBe(false);
-  });
+  })
 });

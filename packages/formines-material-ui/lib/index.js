@@ -6,16 +6,16 @@ module.exports = {
   Form,
   connectField,
   validations,
-  ValidatedTextField: connectField(({ errorMessage, ...props }) => (
-    <TextField
+  ValidatedTextField: connectField(function ValidatedTextField({ wasTouched, errorMessage, ...props }) {
+    return <TextField
       {...props}
-      errorText={errorMessage}
-    />
-  )),
-  ValidatedToggle: connectField(({ errorMessage, onChange, ...props }) => (
-    <Toggle
+      errorText={wasTouched && errorMessage}
+    />;
+  }),
+  ValidatedToggle: connectField(function ValidatedToggle({ wasTouched, errorMessage, onChange, ...props }) {
+    return <Toggle
       {...props}
       onToggle={onChange}
-    />
-  ))
+    />;
+  })
 };

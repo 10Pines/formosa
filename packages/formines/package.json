@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "clean": "rm -rf validations models components index.js || true",
-    "build": "babel --ignore '**/__test__/**' lib -d .",
+    "build": "babel --ignore setupJest.js --ignore '**/__test__/**' lib -d .",
     "lint": "eslint --ext .jsx,.js lib/**",
     "prepare": "npm run build"
   },
@@ -47,6 +47,10 @@
     "eslint-watch": "^3.1.2",
     "jest": "^22.4.3",
     "jest-enzyme": "^6.0.0",
+    "jest-plugin-action": "^2.9.0",
+    "jest-plugin-its": "^2.9.0",
+    "jest-plugin-set": "^2.9.0",
+    "jest-plugins": "^2.9.0",
     "prop-types": "^15.5.10",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

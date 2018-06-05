@@ -44,14 +44,13 @@ export const connectField = (Component) => {
     render () {
       const { field } = this.state
       const props = Object.assign({}, this.props);
-      if (field.wasTouched) {
-        props.errorMessage = field.errorMessage;
-      }
+      props.wasTouched = field.wasTouched
+      props.errorMessage = field.errorMessage;
       delete props.onValid;
       delete props.onChange;
       delete props.validation;
       delete props.formines_form;
-  
+
       return (
         <Component
           {...props}
@@ -65,6 +64,6 @@ export const connectField = (Component) => {
       );
     }
   }
-  Wrapper.displayName = `formines-field-${Component.displayName}`;
+  Wrapper.displayName = `formines-field-${Component.displayName || Component.name || 'Component'}`;
   return Wrapper;
 }

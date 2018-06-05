@@ -35,6 +35,7 @@ export class NestedForm extends React.Component {
   }
 
   render () {
+    const { form } = this.state
     const props = Object.assign({}, this.props);
     delete props.validation;
     delete props.formines_form;
@@ -43,8 +44,8 @@ export class NestedForm extends React.Component {
       <Provider formines_form={this.state.form}>
         <div {...props}>
           {this.props.children}
-          {! this.state.form.isValid ?
-            <p className='error-message' >{this.state.form.errorMessage}</p> : null}ss
+          {! form.isValid && form.wasTouched ?
+            <p className='error-message' >{form.errorMessage}</p> : null}ss
         </div>
       </Provider>
     );
