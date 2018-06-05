@@ -157,7 +157,8 @@ export class FormValidation extends Validation {
       if (field.isValid) {
         finalValue[name] = field.value;
       } else {
-        return error(`Field ${name} is not valid`);
+        // No error message since child fields should show that error
+        return error();
       }
     }
 

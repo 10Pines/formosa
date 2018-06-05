@@ -1,15 +1,21 @@
 import React from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Form, ValidatedTextField, ValidatedToggle } from 'formines-material-ui';
-import { notEmpty, alpha, number, noop } from 'formines/validations';
+import Toggle from 'material-ui/Toggle';
+import RaisedButton from 'material-ui/RaisedButton';
 
+import { NestedForm } from 'formines';
+import { Form, ValidatedTextField, ValidatedToggle } from 'formines-material-ui';
+import { CustomValidation, notEmpty, alpha, number, noop, success, error } from 'formines/validations';
 
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmut = this.handleSubmit.bind(this);
-    this.state = { isValid: false };
+    this.state = {
+      isValid: false,
+      shouldShowEmail: false,
+    };
   }
 
   handleSubmit(loginData) {
@@ -25,8 +31,9 @@ export default class LoginForm extends React.Component {
       password: 'super secret'
     }
     */
-    console.log(loginData)
+    console.log(loginData);
   }
+
   componentDidCatch(error, info) {
     console.log('error', error);
     console.log('info', info);
@@ -36,36 +43,63 @@ export default class LoginForm extends React.Component {
     return (
       <MuiThemeProvider>
         <Form
-          onInvalid={() => this.setState({ isValid: false })}
+          onInvalid={() => this.setState({isValid: false})}
           onSubmit={this.handleSubmit}
-          onValid={() => this.setState({ isValid: true })}
+          onValid={() => this.setState({isValid: true})}
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            margin: '0 auto',
-            width: '500px',
-            textAlign: 'center',
+            border: '1px solid black',
+            margin: '3em',
           }}
         >
           <ValidatedTextField
             name="username"
-            floatingLabelText="Usename"
-            validation={notEmpty.and(alpha).withError("Please insert a valid username")}
-          />
-          <ValidatedTextField
+            floatingLabelText="Username"
+            validation={notEmpty.and(alpha).withError('Please insert a valid username')}
+          /> <br/>
+          <NestedForm
             name="password"
-            floatingLabelText="Password"
-            validation={notEmpty}
-          />
-          <ValidatedToggle
-            label="Toggled by default"
+            validation={
+              new CustomValidation(({value, confirmation}) =>
+                value === confirmation ?
+                  success(value) :
+                  error(`Passwords don't match`),
+              )
+            }
+            errorsComponent={({errors}) =>
+              <div>
+                <p>{errors}</p>
+                <img src="https://media.giphy.com/media/b5XRfyjS2xva0/giphy.gif"/>
+              </div>
+            }
+          >
+            <ValidatedTextField
+              name="value"
+              floatingLabelText="Password"
+              validation={notEmpty}
+            /> <br/>
+            <ValidatedTextField
+              name="confirmation"
+              floatingLabelText="Confirmation"
+              validation={noop}
+            /> <br/>
+          </NestedForm>
+          <Toggle
             name="isAdmin"
-            validation={noop}
+            onToggle={(evt, shouldShowEmail) => {
+              this.setState({shouldShowEmail});
+            }}
           />
-          <button
+          {this.state.shouldShowEmail && <ValidatedTextField
+            name="email"
+            floatingLabelText="Email"
+            validation={notEmpty}
+          />} <br/>
+          <RaisedButton
+            primary
             disabled={!this.state.isValid}
             type='submit'
-          > LOGIN </button>
+          > LOGIN
+          </RaisedButton>
         </Form>
       </MuiThemeProvider>
     );
