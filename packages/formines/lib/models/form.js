@@ -12,7 +12,7 @@ export class Form {
 
   @action registerField(name, newField) {
     if (this.fields.has(name)) {
-      console.warn(`A field with name '${name}' is already registered, registering agian`);
+      console.warn(`A field with name '${name}' is already registered, registering again`);
     }
 
     newField.delete = () => {

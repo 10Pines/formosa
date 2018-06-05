@@ -29,7 +29,8 @@ describe('ValidatedInput', () => {
     beforeEach(() => {
       wrapper.find('input').simulate('change', {
         target: { value: 'hi' } });
-    })
+    });
+
     it('notifies the form', () => {
       expect(form.isValid).toBe(true);
       expect(form.fields.get('field').isValid).toBe(true);
@@ -49,7 +50,11 @@ describe('ValidatedInput', () => {
       beforeEach(() => {
         wrapper.find('input').simulate('change', {
           target: { value: 'hi' } });
-      })
+      });
+      it('is not valid', () => {
+        expect(form.isValid).toBe(false);
+        expect(form.fields.get('field').isValid).toBe(false);
+      });
       it('shows the error message', () => {
         expect(wrapper.find('p').text()).toEqual(errorMessage);
       });

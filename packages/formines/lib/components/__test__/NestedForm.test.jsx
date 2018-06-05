@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import { ValidatedInput } from '../ValidatedInput.jsx';
 import { NestedForm } from '../NestedForm.jsx';
-import { notEmpty, noop, formValidation, never } from '../../validations';
+import { notEmpty, noop, formValidation, never, CustomValidation, success, error } from '../../validations';
 import { Form } from '../../models';
 
 describe('NestedForm', () => {
@@ -18,48 +18,58 @@ describe('NestedForm', () => {
     >
       <ValidatedInput
         name='field'
-        validation={noop}
+        validation={notEmpty}
       />
-    </NestedForm>)
+    </NestedForm>),
   );
   describe('on mount', () => {
     it('reports up the correct validation status', () => {
       expect(form.isValid).toEqual(false);
     });
   });
+
   describe('after a subfield gets valid', () => {
     beforeEach(() => {
       wrapper.find('input')
-        .simulate('change', {target: { value: 'hi' }});
-    })
+        .simulate('change', {target: {value: 'hi'}});
+    });
     it('reports up the correct validation status', () => {
       expect(form.isValid).toBe(true);
-      expect(form.value).toEqual({
-        nested: { field: 'hi' }
-      });
+      expect(form.value).toEqual({nested: {field: 'hi'}});
     });
   });
 
-  describe('with an always invalid validation', () => {
-    set('errorMessage', () => 'There is something wrong');
-    set('validation', () => never.withError(errorMessage));
+  describe('Error messages', () => {
+    describe('with a validation', () => {
+      set('errorMessage', () => 'There is something wrong');
+      set('validation', () =>
+        new CustomValidation(({field}) =>
+          field === 'hello' ? success(field) : error(errorMessage),
+        ),
+      );
 
-    it('validates its own state with the validation function', () => {
-      wrapper;
+      it('does not render the error message', () => {
+        expect(wrapper.find('p.error-message')).toHaveLength(0);
+      });
 
-      expect(form.isValid).toBe(false);
-      expect(form.fields.get('nested').errorMessage).toEqual(errorMessage);
+      describe('after it was touched', () => {
+        beforeEach(() => {
+          wrapper.find('input').simulate('change', {target: {value: 'hi'}});
+        });
+
+        it('shows the error message', () => {
+          expect(wrapper.find('p.error-message').text()).toEqual(errorMessage);
+        });
+        describe('after its value gets valid', () => {
+          beforeEach(() => {
+            wrapper.find('input').simulate('change', {target: {value: 'hello'}});
+          });
+
+          it('shows no error message', () => {
+            expect(wrapper.find('p.error-message')).toHaveLength(0);
+          });
+        });
+      });
     });
-
-    it('does not show the error message', () => {
-      wrapper.find('input').simulate('change', { target: { value: 'hi' } });
-
-      expect(form).toHaveProperty('isValid', false);
-      expect(wrapper.find('p.error-message').text()).toEqual(errorMessage);
-    });
-
-    describe('before it was touched', () => {
-
-    })
-  })
+  });
 });

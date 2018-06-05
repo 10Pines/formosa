@@ -30,14 +30,18 @@ export class Validation {
     return new PipeValidation(this, validation);
   };
 
+  or(otherValidation) {
+    return new OrValidation(this, otherValidation);
+  }
+
   and(otherValidation) {
-    return new BothValidation(this, otherValidation);
+    return new AndValidation(this, otherValidation);
   };
 
   withError(errorMessage) {
     return new WithErrorValidation(this, errorMessage);
   };
-};
+}
 
 export class WithErrorValidation extends Validation {
   constructor(validation, errorMessage) {
@@ -67,7 +71,7 @@ export class CustomValidation extends Validation {
   }
 }
 
-export class BothValidation extends Validation {
+export class AndValidation extends Validation {
   constructor(firstValidation, secondValidation) {
     super();
     this.firstValidation = firstValidation;
@@ -83,7 +87,23 @@ export class BothValidation extends Validation {
       return this.secondValidation.validate(originalValue);
     }
   };
+}
 
+class OrValidation extends Validation {
+  constructor(validation, otherValidation) {
+    super();
+    this.validation = validation;
+    this.otherValidation = otherValidation;
+  }
+
+  validate(value) {
+    const result = this.validation.validate(value);
+    if (result.isValid) {
+      return result;
+    } else {
+      return this.otherValidation.validate(value)
+    }
+  }
 }
 
 export class NullValidation extends Validation {
@@ -92,7 +112,7 @@ export class NullValidation extends Validation {
   };
 }
 
-export class NaziValidation extends Validation {
+export class NeverValidation extends Validation {
   validate(originalValue) {
     return error('This field will never be valid');
   }
@@ -157,7 +177,7 @@ export class PipeValidation extends Validation {
   }
 
   validate(value) {
-    let validationResult = this.firstValidation.validate(value);
+    const validationResult = this.firstValidation.validate(value);
     if (! validationResult.isValid) {
       return validationResult;
     } else {
@@ -166,7 +186,7 @@ export class PipeValidation extends Validation {
   }
 }
 
-export const never = new NaziValidation();
+export const never = new NeverValidation();
 export const alpha = new AlphaValidation();
 export const noop = new NullValidation();
 export const notEmpty = new NotEmptyValidation();

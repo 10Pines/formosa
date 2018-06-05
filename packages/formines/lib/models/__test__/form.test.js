@@ -5,6 +5,8 @@ describe('form', () => {
   set('form', () => new Form(formValidation));
   subject(() => form);
 
+  its('isValid', () => isExpected.toBe(false));
+
   describe('with one valid field registered', () => {
 
     set('field', () => new Field(notEmpty, 'hi'));

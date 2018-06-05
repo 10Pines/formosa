@@ -47,7 +47,7 @@ describe('Form component', () => {
     it('is valid', () => {
       let isValid = null;
       const onSubmit = jest.fn();
-      const onInvalid = () => isValid = false;;
+      const onInvalid = () => isValid = false;
       const onValid = () => isValid = true;
       mount(
         <Form
