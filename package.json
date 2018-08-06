@@ -1,15 +1,12 @@
 {
-  "name": "formines",
-  "version": "0.1.1",
+  "name": "formosa",
+  "version": "0.0.0",
   "description": "Simple and composable validations for react",
-  "url" : "https://github.com/10Pines/formines",
+  "url": "https://github.com/10Pines/formosa",
   "scripts": {
     "test": "lerna run test",
     "build": "lerna run build",
     "publish": "lerna publish"
-  },
-  "jest": {
-    "rootDir": "lib"
   },
   "private": true,
   "workspaces": [
@@ -17,6 +14,7 @@
     "examples/*"
   ],
   "devDependencies": {
-    "lerna": "^2.5.1"
+    "lerna": "^2.5.1",
+    "@angular/cli": "^6.1.1"
   }
 }

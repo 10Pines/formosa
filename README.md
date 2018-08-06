@@ -1,7 +1,7 @@
-# React copmosable validations
+# Formosa
 
-[![Travis](https://img.shields.io/travis/10pines/formines.svg)](https://travis-ci.org/10Pines/formines)
-[![npm](https://img.shields.io/npm/v/formines.svg)](https://www.npmjs.com/package/formines)
+[![Travis](https://img.shields.io/travis/10pines/formosa.svg)](https://travis-ci.org/10Pines/formosa)
+[![npm](https://img.shields.io/npm/v/formosa.svg)](https://www.npmjs.com/package/formosa)
 
 ## What?
 
@@ -58,5 +58,3 @@ among the most important it includes:
 
 - Nested forms: There can be sections of a form that validate multiple fields.
     eg, a field can never be higher than the other number
-- Esoteric input types (*NOT IMPLEMENTED YET*): validations can transform the
-    result of a field, for example a numeric input that only returns numeric values

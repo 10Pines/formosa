@@ -8,7 +8,7 @@
     "start": "neutrino start --use @neutrinojs/react"
   },
   "dependencies": {
-    "formines": "^0.4.0",
+    "formosa": "^0.4.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },

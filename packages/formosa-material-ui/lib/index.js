@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, connectField, validations } from 'formines';
+import { Form, connectField, validations } from 'formosa';
 import { TextField, Toggle } from 'material-ui';
 
 module.exports = {
