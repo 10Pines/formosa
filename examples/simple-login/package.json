@@ -1,6 +1,6 @@
 {
   "name": "simple-login",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "main": "src/index.jsx",
   "private": true,
   "license": "MIT",
@@ -8,7 +8,7 @@
     "start": "neutrino start --use @neutrinojs/react"
   },
   "dependencies": {
-    "formosa": "^0.5.1",
+    "formosa": "^0.5.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },

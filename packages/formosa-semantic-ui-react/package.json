@@ -1,6 +1,6 @@
 {
   "name": "formosa-semantic-ui-react",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "semantic-ui-react components wrapped for formosa",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
@@ -51,7 +51,7 @@
     "react-test-renderer": "^16.3.2"
   },
   "dependencies": {
-    "formosa": "^0.5.1",
+    "formosa": "^0.5.2",
     "semantic-ui-react": "^0.82.1"
   }
 }
