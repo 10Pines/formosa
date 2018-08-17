@@ -1,9 +1,11 @@
 {
   "name": "formosa-semantic-ui-react",
   "version": "0.5.0",
-  "description": "material-ui components wrapped for formosa",
+  "description": "semantic-ui-react components wrapped for formosa",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
+  "repository": "https://github.com/10Pines/formosa/tree/master/packages/formosa-semantic-ui-react",
+
   "scripts": {
     "clean": "rm -rf dist || true",
     "build": "babel --ignore '**/__test__/**' lib -d dist",

@@ -4,6 +4,8 @@
   "description": "Simple and composable validations for react",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
+  "repository": "https://github.com/10Pines/formosa/tree/master/packages/formosa",
+
   "scripts": {
     "test": "jest",
     "clean": "rm -rf validations models components index.js || true",

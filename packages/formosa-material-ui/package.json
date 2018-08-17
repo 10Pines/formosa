@@ -4,6 +4,8 @@
   "description": "material-ui components wrapped for formosa",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
+  "repository": "https://github.com/10Pines/formosa/tree/master/packages/formosa-material-ui",
+
   "scripts": {
     "clean": "rm -rf dist || true",
     "build": "babel --ignore '**/__test__/**' lib -d dist",
