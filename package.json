@@ -4,6 +4,8 @@
   "description": "Simple and composable validations for react",
   "url": "https://github.com/10Pines/formosa",
   "scripts": {
+    "setup": "lerna bootstrap",
+    "clean": "lerna run clean",
     "test": "lerna run test",
     "build": "lerna run build",
     "publish": "lerna publish"
