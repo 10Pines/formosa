@@ -9,7 +9,7 @@ describe('ValidatedInput', () => {
   set('form', () => new Form(formValidation));
   set('wrapper', () => mount(
     <ValidatedInput
-      formines_form={form}
+      formosa_form={form}
       name='field'
       validation={validation}
     />)

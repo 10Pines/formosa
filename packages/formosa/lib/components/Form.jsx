@@ -38,10 +38,10 @@ export class Form extends React.Component {
     const props = Object.assign({}, this.props);
     delete props.onValid;
     delete props.validation;
-    delete props.formines_form;
+    delete props.formosa_form;
 
     return (
-      <Provider formines_form={this.state.form}>
+      <Provider formosa_form={this.state.form}>
         <form
           {...props}
           onSubmit={(evt) => {
