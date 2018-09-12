@@ -1,6 +1,6 @@
 # Formosa
 
-[![Travis](https://img.shields.io/travis/10pines/formosa.svg)](https://travis-ci.org/10Pines/formosa)
+[![Build Status](https://travis-ci.org/10Pines/formosa.svg?branch=master)](https://travis-ci.org/10Pines/formosa)
 [![npm](https://img.shields.io/npm/v/formosa.svg)](https://www.npmjs.com/package/formosa)
 
 ## What?
