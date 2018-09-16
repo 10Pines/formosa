@@ -5,7 +5,13 @@ module.exports = {
       {
         eslint: {
           rules: {
-            "react/prefer-stateless-function": 'off'
+            "react/prefer-stateless-function": 'off',
+            "no-unused-vars": 'off',
+            "no-console": 'off',
+            "no-debugger": 'off',
+            "no-param-reassign": 'off',
+            "import/prefer-default-export": 'off',
+            "no-alert": 'off',
           }
         }
       }

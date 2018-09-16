@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
+button{
+  background-color: lightgreen;
+}
+
+button:disabled,
+button[disabled]{
+  background-color: red;
+  color: black
+}
+
 .spectacle-slide h1 {
   color: black !important;
 }
