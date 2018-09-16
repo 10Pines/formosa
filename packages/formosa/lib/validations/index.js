@@ -101,7 +101,7 @@ class OrValidation extends Validation {
     if (result.isValid) {
       return result;
     } else {
-      return this.otherValidation.validate(value)
+      return this.otherValidation.validate(value);
     }
   }
 }
@@ -141,7 +141,7 @@ export class NotEmptyValidation extends Validation{
 export class FloatValidation extends Validation {
   validate(originalValue) {
     let number = Number(originalValue);
-    if (Number.isNaN(number)) {
+    if (originalValue === '' || Number.isNaN(number)) {
       return error('The input must be a number');
     } else {
       return success(number);

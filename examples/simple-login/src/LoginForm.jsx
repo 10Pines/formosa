@@ -62,7 +62,7 @@ export default class LoginForm extends React.Component {
               new CustomValidation(({value, confirmation}) =>
                 value === confirmation ?
                   success(value) :
-                  error(`Passwords don't match`),
+                  error("Passwords don't match"),
               )
             }
             errorsComponent={({errors}) =>

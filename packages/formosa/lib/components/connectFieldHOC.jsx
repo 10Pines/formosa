@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
+import { noop } from '../validations';
 
 import { Field } from '../models';
 
 export const connectField = (Component) => {
   @inject('formosa_form') @observer class Wrapper extends React.Component {
+    static defaultProps = {
+      validation: noop,
+    }
     static propTypes = {
       defaultValue: PropTypes.any,
-      formosa_form: PropTypes.object,
       name: PropTypes.string.isRequired,
       onChange: PropTypes.func,
       validation: PropTypes.object.isRequired,
@@ -56,7 +59,7 @@ export const connectField = (Component) => {
           onChange={(evt, newValue) => {
             this.handleNewValue(evt, newValue);
             if (this.props.onChange) {
-              this.props.onChange(evt, newValue);
+              this.props.onChange(evt, this.state.field);
             }
           }}
         />
