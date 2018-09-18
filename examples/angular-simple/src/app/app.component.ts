@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Validations } from 'ngx-formosa';
+import { validations } from 'formosa';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,10 @@ import { Validations } from 'ngx-formosa';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  constructor(public v: Validations) {
-  }
+  // title = 'app';
+  noop = validations.noop;
+  // constructor(public v: Validations) {
+  // }
 
   doThings(o: any) {
     console.warn(o);

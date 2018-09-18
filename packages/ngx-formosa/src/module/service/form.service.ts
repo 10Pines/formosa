@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Form } from 'formosa';
+import { Form } from 'formosa/models';
 import { formValidation } from 'formosa/validations';
 
 @Injectable()

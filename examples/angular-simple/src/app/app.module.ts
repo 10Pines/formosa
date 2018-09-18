@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormosaModule.withValidations(),
+    FormosaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

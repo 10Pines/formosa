@@ -1,9 +1,10 @@
 <formosa-form (submit)="doThings($event)">
   <p>
-    <formosa-validated-text-input name="usuario" [validation]="v.notEmpty.and(v.alpha)"></validated-text-input>
+    <!-- <formosa-validated-text-input name="usuario" [validation]="v.notEmpty.and(v.alpha)"></formosa-validated-text-input> -->
+    <formosa-validated-text-input name="usuario" [validation]="noop"></formosa-validated-text-input>
   </p>
   <p>
-    <formosa-validated-text-input name="password" [validation]="v.notEmpty"></validated-text-input>
+    <!-- <formosa-validated-text-input name="password" [validation]="v.notEmpty"></formosa-validated-text-input> -->
   </p>
   <button type="submit">Submit</button>
-</formines-form>
+</formosa-form>
