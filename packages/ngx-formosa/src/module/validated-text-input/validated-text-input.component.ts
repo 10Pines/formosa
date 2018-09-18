@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Form, Field } from 'formosa/models';
+import { Field } from 'formosa/models';
+
+import { FormService } from '../service/form.service';
 
 @Component({
   selector: 'formosa-validated-text-input',
@@ -12,7 +14,7 @@ export class ValidatedTextInputComponent implements OnInit, OnDestroy {
   @Input('validation') validation: any;
   field: Field;
 
-  constructor(public form: Form) { }
+  constructor(public formService: FormService) { }
 
   ngOnInit() {
     if (! this.name) {
@@ -23,7 +25,7 @@ export class ValidatedTextInputComponent implements OnInit, OnDestroy {
     }
 
     this.field = new Field(this.validation, '');
-    this.onDestory = this.form.registerField(this.name, this.field);
+    this.onDestory = this.formService.form.registerField(this.name, this.field);
   }
 
   ngOnDestroy(): void {

@@ -1,33 +1,31 @@
-import { Component, OnInit, Output, EventEmitter, FactoryProvider } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Form } from 'formosa/models';
 import { formValidation } from 'formosa/validations';
+import { FormService } from '../service/form.service';
 
-export const formFactory = () => new Form(formValidation);
-
-// @dynamic
 @Component({
   selector: 'formosa-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
   providers: [
-    // new Provider(Form, formFactory),
-    {
-      provide: Form,
-      useFactory: formFactory,
-    },
-  ]
+    FormService,
+  ],
 })
 export class FormComponent implements OnInit {
 
   @Output('submit') submit = new EventEmitter<any>();
 
-  constructor(public form: Form) { }
+  constructor(public formService: FormService) { }
 
   ngOnInit() { }
+
+  get form(): any {
+    return this.formService.form;
+  }
 
   doSubmit(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    this.submit.emit(this.form.value);
+    this.submit.emit(this.formService.form.value);
   }
 }
