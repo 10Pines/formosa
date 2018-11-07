@@ -11,7 +11,7 @@ describe('NestedForm', () => {
   set('validation', () => noop);
   set('wrapper', () => mount(
     <NestedForm
-      formines_form={form}
+      formosa_form={form}
       id='nestedForm'
       name='nested'
       validation={validation}

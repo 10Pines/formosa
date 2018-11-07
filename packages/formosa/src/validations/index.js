@@ -101,7 +101,7 @@ class OrValidation extends Validation {
     if (result.isValid) {
       return result;
     } else {
-      return this.otherValidation.validate(value)
+      return this.otherValidation.validate(value);
     }
   }
 }

@@ -6,12 +6,12 @@ import { autorun } from 'mobx';
 import { formValidation, noop } from '../validations';
 import { Form } from '../models';
 
-@inject('formines_form')
+@inject('formosa_form')
 @observer
 export class NestedForm extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    formines_form: PropTypes.object,
+    formosa_form: PropTypes.object,
     name: PropTypes.string.isRequired,
     validation: PropTypes.object.isRequired,
     errorsComponent: PropTypes.any,
@@ -29,7 +29,7 @@ export class NestedForm extends React.Component {
   }
 
   componentWillMount() {
-    this.props.formines_form.registerField(this.props.name, this.state.form);
+    this.props.formosa_form.registerField(this.props.name, this.state.form);
     autorun(() => {
       if (this.state.form.isValid) {
         if (this.props.onValid) this.props.onValid();
@@ -44,13 +44,13 @@ export class NestedForm extends React.Component {
 
     const props = Object.assign({}, this.props);
     delete props.validation;
-    delete props.formines_form;
+    delete props.formosa_form;
     delete props.errorsComponent;
 
     const ErrorsComponent = this.props.errorsComponent;
 
     return (
-      <Provider formines_form={this.state.form}>
+      <Provider formosa_form={this.state.form}>
         <div {...props}>
           {this.props.children}
           {! form.isValid && form.wasTouched ?

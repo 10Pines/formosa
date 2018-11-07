@@ -1,14 +1,15 @@
 {
   "name": "simple-login",
   "version": "0.5.2",
-  "main": "src/index.jsx",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "neutrino start --use @neutrinojs/react"
   },
   "dependencies": {
-    "formosa": "^0.5.2",
+    "formosa": "*",
+    "formosa-material-ui": "*",
+    "material-ui": "^0.20.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { NestedForm } from 'formosa';
+import { NestedForm, validations } from 'formosa';
 import { Form, ValidatedInput } from 'formosa-semantic-ui-react';
 import { Form as SemanticForm } from 'semantic-ui-react';
-import { CustomValidation, notEmpty, alpha, number, noop, success, error } from 'formosa/validations';
+const { CustomValidation, notEmpty, alpha, number, noop, success, error } = validations;
 
 export default class LoginForm extends React.Component {
   constructor(props) {
