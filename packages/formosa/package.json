@@ -1,6 +1,6 @@
 {
   "name": "formosa",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Simple and composable validations for react",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
@@ -30,7 +30,6 @@
     "index.js"
   ],
   "devDependencies": {
-
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -53,6 +52,9 @@
     "jest-plugin-its": "^2.9.0",
     "jest-plugin-set": "^2.9.0",
     "jest-plugins": "^2.9.0",
+    "prop-types": "^15.5.10",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "react-test-renderer": "^16.3.2",
     "rollup": "^0.66.1",
     "rollup-plugin-babel": "^4.0.3",
@@ -61,11 +63,7 @@
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-terser": "^2.0.2",
     "rollup-plugin-uglify": "^6.0.0",
-    "source-map-explorer": "^1.6.0",
-
-    "prop-types": "^15.5.10",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "source-map-explorer": "^1.6.0"
   },
   "dependencies": {
     "mobx": "^4.4.1",

@@ -1,6 +1,6 @@
 {
   "name": "formosa-semantic-ui-react",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "semantic-ui-react components wrapped for formosa",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
@@ -35,6 +35,9 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
+    "prop-types": "^15.5.10",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "rollup": "^0.66.1",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.1.8",
@@ -42,13 +45,10 @@
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-terser": "^2.0.2",
     "rollup-plugin-uglify": "^6.0.0",
-    "source-map-explorer": "^1.6.0",
-    "prop-types": "^15.5.10",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "source-map-explorer": "^1.6.0"
   },
   "dependencies": {
-    "formosa": "^0.5.2",
+    "formosa": "^0.6.0",
     "semantic-ui-react": "^0.82.1"
   }
 }
