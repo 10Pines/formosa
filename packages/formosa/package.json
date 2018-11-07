@@ -6,22 +6,23 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/10Pines/formosa/tree/master/packages/formosa",
   "scripts": {
+    "build": "rollup -c",
     "test": "jest",
-    "clean": "rm -rf validations models components index.js || true",
-    "build": "babel --ignore setupJest.js --ignore '**/__test__/**' lib -d .",
-    "lint": "eslint --ext .jsx,.js lib/**",
-    "prepare": "npm run build"
+    "lint": "eslint --ext .jsx,.js src/**",
+    "clean": "rm -rf dist || true"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/setupJest.js",
-    "rootDir": "lib"
+    "rootDir": "src"
   },
   "keywords": [
     "react",
     "forms",
     "validation"
   ],
-  "main": "index.js",
+  "main": "./dist/formosa.iife.js",
+  "module": "./dist/formosa.module.js",
+  "browser": "./dist/formosa.umd.js",
   "files": [
     "models",
     "validations",
@@ -29,33 +30,42 @@
     "index.js"
   ],
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.3",
-    "babel-jest": "^22.4.3",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
+
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.6.1",
+    "eslint": "^5.8.0",
     "eslint-import-resolver-babel-module": "^4.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.3.0",
-    "eslint-watch": "^3.1.2",
-    "jest": "^22.4.3",
-    "jest-enzyme": "^6.0.0",
+    "jest": "^23.6.0",
+    "jest-enzyme": "^7.0.0",
     "jest-plugin-action": "^2.9.0",
     "jest-plugin-its": "^2.9.0",
     "jest-plugin-set": "^2.9.0",
     "jest-plugins": "^2.9.0",
+    "react-test-renderer": "^16.3.2",
+    "rollup": "^0.66.1",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-local-resolve": "^1.0.7",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-terser": "^2.0.2",
+    "rollup-plugin-uglify": "^6.0.0",
+    "source-map-explorer": "^1.6.0",
+
     "prop-types": "^15.5.10",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-test-renderer": "^16.3.2"
+    "react-dom": "^16.3.2"
   },
   "dependencies": {
     "mobx": "^4.4.1",

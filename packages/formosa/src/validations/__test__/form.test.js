@@ -9,7 +9,7 @@ describe('#formValidation', () => {
   describe('with one valid field', () => {
     it('it is valid', () => {
       const values = new Map([
-          ['language', success('haskell')]
+        ['language', success('haskell')]
       ]);
       expect(formValidation.validate(values)).toHaveProperty('isValid', true);
       expect(formValidation.validate(values)).toHaveProperty('value', {
@@ -20,8 +20,8 @@ describe('#formValidation', () => {
   describe('with one invalid field', () => {
     it('it is not valid', () => {
       const values = new Map([
-          ['language', success('haskell')],
-          ['paradigm', error('This is empty')]
+        ['language', success('haskell')],
+        ['paradigm', error('This is empty')]
       ]);
       expect(formValidation.validate(values)).toHaveProperty('isValid', false);
     });
@@ -29,8 +29,8 @@ describe('#formValidation', () => {
   describe('with more than one valid field', () => {
     it('it is valid', () => {
       const values = new Map([
-          ['language', success('haskell')],
-          ['grade', success(7)]
+        ['language', success('haskell')],
+        ['grade', success(7)]
       ]);
       expect(formValidation.validate(values)).toHaveProperty('isValid', true);
       expect(formValidation.validate(values)).toHaveProperty('value', {

@@ -4,9 +4,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Toggle from 'material-ui/Toggle';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { NestedForm } from 'formosa';
+import { NestedForm, validations } from 'formosa';
 import { Form, ValidatedTextField, ValidatedToggle } from 'formosa-material-ui';
-import { CustomValidation, notEmpty, alpha, number, noop, success, error } from 'formosa/validations';
+const { CustomValidation, notEmpty, alpha, number, noop, success, error } = validations;
 
 export default class LoginForm extends React.Component {
   constructor(props) {

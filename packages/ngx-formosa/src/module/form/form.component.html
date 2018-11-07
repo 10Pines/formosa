@@ -1,0 +1,8 @@
+<form (submit)="doSubmit($event)">
+  form works!
+  <ng-content></ng-content>
+  {{ form.isValid }}
+  <pre>
+    {{ form.value | json}}
+  </pre>
+</form>
