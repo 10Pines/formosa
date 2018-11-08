@@ -8,8 +8,8 @@
     "clean": "lerna run --no-private clean",
     "test": "lerna run --no-private test",
     "build": "lerna run --no-private build",
-    "publish": "run-s clean test build publish-raw",
-    "publish-raw": "lerna publish"
+    "publish:raw": "lerna run --no-private npm publish",
+    "publish": "run-s clean build publish:raw"
   },
   "private": true,
   "dependencies": {

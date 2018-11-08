@@ -51,7 +51,7 @@ export default class Presentation extends React.Component {
       <Deck contentWidth={1500} contentHeight={1050} transition={['fade']} transitionDuration={500} theme={theme}>
         <Slide>
           <Heading >Formosa</Heading>
-          <Text>mejores forms para react y angular</Text>
+          <Text>Mejores forms para react y angular</Text>
         </Slide>
         <Slide>
           <Text>Formulario con react usando setState</Text>
