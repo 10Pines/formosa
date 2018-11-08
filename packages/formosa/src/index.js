@@ -4,6 +4,7 @@ import { connectField } from './components/connectFieldHOC';
 import { ValidatedInput } from './components/ValidatedInput';
 import { ValidatedButton } from './components/ValidatedButton';
 import { ValidatedSelect } from './components/ValidatedSelect';
+
 import * as validations from './validations';
 
 module.exports = {
