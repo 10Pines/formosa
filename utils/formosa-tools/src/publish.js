@@ -21,7 +21,13 @@ async function main() {
         return;
     }
 
-    child_process.execSync('npm publish')
+    try {
+        console.log('Publishing...')
+        child_process.execSync('npm publish --silent')
+    } catch (e) {
+        console.log('there was an error publishing');
+        process.exit(1);
+    }
 }
 
 main();

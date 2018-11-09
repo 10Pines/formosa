@@ -5,11 +5,11 @@
   "url": "https://github.com/10Pines/formosa",
   "scripts": {
     "setup": "lerna bootstrap",
-    "clean": "lerna run --no-private clean",
-    "test": "lerna run --no-private test",
-    "build": "lerna run --no-private build",
-    "publish": "run-s clean build publish:raw",
-    "publish:raw": "lerna run --no-private publish:formosa",
+    "clean": "lerna run --stream --no-private clean",
+    "test": "lerna run --stream --no-private test",
+    "build": "lerna run --stream --no-private build",
+    "publish": "run-s -s clean build publish:raw",
+    "publish:raw": "lerna run --stream --no-private publish:formosa",
     "publish:version": "lerna version"
   },
   "private": true,
