@@ -5,15 +5,12 @@ before_script:
 - travis_wait npm run setup
 
 script:
-- npm run build
 - npm run test
-- '[ -n $TRAVIS_TAG ] && npm publish'
-
-deploy:
-  provider: script
-  script: npm run publish
-  skip_cleanup: true
-  on:
-    branch: master
-    tags: true
+- npm run build
+- |
+  if [ -n "$TRAVIS_TAG" ]; then 
+    npm run publish; 
+  else 
+    echo 'Not a tag, skipping publish';
+  fi
 

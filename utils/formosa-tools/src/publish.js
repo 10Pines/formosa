@@ -23,7 +23,7 @@ async function main() {
 
     try {
         console.log('Publishing...')
-        child_process.execSync('npm publish')
+        child_process.execSync('npm publish', {stdio: 'inherit'})
     } catch (e) {
         console.log('There was an error publishing');
         process.exit(1);
