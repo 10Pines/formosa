@@ -1,6 +1,6 @@
 {
   "name": "formosa-material-ui",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "material-ui components wrapped for formosa",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
@@ -36,7 +36,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
-    "formosa-tools": "^0.6.6",
+    "formosa-tools": "^0.6.7",
     "prop-types": "^15.5.10",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -50,7 +50,7 @@
     "source-map-explorer": "^1.6.0"
   },
   "dependencies": {
-    "formosa": "^0.6.6",
+    "formosa": "^0.6.7",
     "material-ui": "^0.20.1"
   }
 }
