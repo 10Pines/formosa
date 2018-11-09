@@ -25,7 +25,7 @@ async function main() {
         console.log('Publishing...')
         child_process.execSync('npm publish')
     } catch (e) {
-        console.log('there was an error publishing');
+        console.log('There was an error publishing');
         process.exit(1);
     }
 }
