@@ -8,7 +8,7 @@
     "clean": "lerna run --stream --no-private clean",
     "test": "lerna run --stream --no-private test",
     "build": "lerna run --stream --no-private build",
-    "publish": "run-s -s clean build publish:raw",
+    "publish": "run-s clean build publish:raw",
     "publish:raw": "lerna run --stream --no-private publish:formosa",
     "publish:version": "lerna version"
   },
