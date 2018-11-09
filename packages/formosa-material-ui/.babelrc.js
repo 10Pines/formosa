@@ -1,1 +1,1 @@
-module.exports = require("../../shared/babelrc")
+module.exports = require("formosa-tools/babelrc.js")

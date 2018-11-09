@@ -2,4 +2,17 @@ language: node_js
 node_js: [ "8" ]
 
 before_script:
-- npm run setup
+- travis_wait npm run setup
+
+script:
+- npm run build
+- npm run test
+
+deploy:
+  provider: script
+  script: npm run publish
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
+

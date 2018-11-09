@@ -9,6 +9,7 @@
     "build": "rollup -c",
     "test": "echo No tests here",
     "lint": "eslint --ext .jsx,.js lib/**",
+    "publish:formosa": "formosa-publish",
     "clean": "rm -rf dist || true"
   },
   "keywords": [
@@ -45,7 +46,8 @@
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-terser": "^2.0.2",
     "rollup-plugin-uglify": "^6.0.0",
-    "source-map-explorer": "^1.6.0"
+    "source-map-explorer": "^1.6.0",
+    "formosa-tools": "*"
   },
   "dependencies": {
     "formosa": "^0.6.0",

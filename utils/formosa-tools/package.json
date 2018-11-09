@@ -1,0 +1,13 @@
+{
+  "name": "formosa-tools",
+  "version": "0.6.1",
+  "private": true,
+  "description": "Utility scripts",
+  "author": "Lucas David Traverso <lucas6246@gmail.com>",
+  "bin": {
+    "formosa-publish": "./src/publish.js"
+  },
+  "devDependencies": {
+    "find-up": "^3.0.0"
+  }
+}
