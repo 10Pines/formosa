@@ -3,10 +3,12 @@ node_js: [ "8" ]
 
 before_script:
 - travis_wait npm run setup
+- echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
 
 script:
 - npm run test
 - npm run build
+- env
 - |
   if [ -n "$TRAVIS_TAG" ]; then 
     npm run publish; 
