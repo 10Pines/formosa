@@ -2,7 +2,7 @@
   "name": "formosa",
   "version": "0.0.0",
   "description": "Simple and composable validations for react",
-  "url": "https://github.com/10Pines/formosa",
+  "repository": "https://github.com/10Pines/formosa",
   "scripts": {
     "setup": "lerna bootstrap",
     "clean": "lerna run --stream --no-private clean",
@@ -15,6 +15,7 @@
   "private": true,
   "dependencies": {
     "lerna": "^3.4.3",
+    "lerna-changelog": "^0.8.2",
     "npm-check": "^5.9.0",
     "npm-run-all": "^4.1.3"
   }
