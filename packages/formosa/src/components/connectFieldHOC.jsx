@@ -45,21 +45,21 @@ export const connectField = (Component) => {
 
     render () {
       const { field } = this.state
-      const props = Object.assign({}, this.props);
-      props.wasTouched = field.wasTouched
-      props.errorMessage = field.errorMessage;
-      delete props.onValid;
-      delete props.onChange;
-      delete props.validation;
-      delete props.formosa_form;
+      const newProps = Object.assign({}, this.props);
+      newProps.field = field;
+      delete newProps.onValid;
+      delete newProps.onChange;
+      delete newProps.validation;
+      delete newProps.formosa_form;
 
       return (
         <Component
-          {...props}
+          {...newProps}
+          value={field.input}
           onChange={(evt, newValue) => {
             this.handleNewValue(evt, newValue);
             if (this.props.onChange) {
-              this.props.onChange(evt, this.state.field);
+              this.props.onChange(evt, field);
             }
           }}
         />

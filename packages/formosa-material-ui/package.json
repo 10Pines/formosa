@@ -50,7 +50,9 @@
     "source-map-explorer": "^1.6.0"
   },
   "dependencies": {
-    "formosa": "^0.6.11",
+    "formosa": "^0.6.11"
+  },
+  "peerDependencies": {
     "material-ui": "^0.20.1"
   }
 }

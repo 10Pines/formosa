@@ -6,7 +6,7 @@ module.exports = {
   Form,
   connectField,
   validations,
-  ValidatedInput: connectField(function ValidatedInput({wasTouched, errorMessage, onChange, ...props}) {
+  ValidatedInput: connectField(function ValidatedInput({field, onChange, ...props}) {
     return [
       <SForm.Input
         key="_formosa_input"
@@ -15,15 +15,15 @@ module.exports = {
           onChange(evt, newValue);
         }}
       />
-      , (wasTouched && errorMessage) ? <Message
+      , (field.wasTouched && field.errorMessage) ? <Message
         key="_formosa_error_message"
         error
         visible
-        content={errorMessage}
+        content={field.errorMessage}
       /> : null,
     ];
   }),
-  ValidatedCheckbox: connectField(function ValidatedCheckbox({wasTouched, errorMessage, ...props}) {
+  ValidatedCheckbox: connectField(function ValidatedCheckbox({...props}) {
     return <Checkbox
       {...props}
     />;

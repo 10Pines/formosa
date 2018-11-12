@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { connectField } from './connectFieldHOC';
 
-export const ValidatedSelect = connectField(({errorMessage, wasTouched, ...props}) => (
+export const ValidatedSelect = connectField(({field, ...props}) => (
   <React.Fragment>
     <select {...props} />
-    {wasTouched && errorMessage ? <p>{errorMessage}</p> : null}
+    {field.wasTouched && field.errorMessage ? <p>{field.errorMessage}</p> : null}
   </React.Fragment>
 ));

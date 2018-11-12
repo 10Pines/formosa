@@ -1,18 +1,24 @@
 import React from 'react';
-import { Form, connectField, validations } from 'formosa';
-import { TextField, Toggle } from 'material-ui';
+import { Form, connectField, connectButton, validations } from 'formosa';
+import { TextField, Toggle, RaisedButton } from 'material-ui';
 
 module.exports = {
   Form,
   connectField,
   validations,
-  ValidatedTextField: connectField(function ValidatedTextField({ wasTouched, errorMessage, ...props }) {
+  ValidatedTextField: connectField(function ValidatedTextField({ field, ...props }) {
     return <TextField
       {...props}
-      errorText={wasTouched && errorMessage}
+      errorText={field.wasTouched && field.errorMessage}
     />;
   }),
-  ValidatedToggle: connectField(function ValidatedToggle({ wasTouched, errorMessage, onChange, ...props }) {
+  ValidatedButton: connectButton(function ValidatedButton({ isValid, ...props }) {
+    return <RaisedButton
+      {...props}
+      disabled={!isValid}
+    />;
+  }),
+  ValidatedToggle: connectField(function ValidatedToggle({ field, onChange, ...props }) {
     return <Toggle
       {...props}
       onToggle={onChange}

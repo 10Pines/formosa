@@ -1,6 +1,7 @@
 import { Form } from './components/Form';
 import { NestedForm } from './components/NestedForm';
 import { connectField } from './components/connectFieldHOC';
+import { connectButton } from './components/connectButtonHOC.jsx';
 import { ValidatedInput } from './components/ValidatedInput';
 import { ValidatedButton } from './components/ValidatedButton';
 import { ValidatedSelect } from './components/ValidatedSelect';
@@ -15,5 +16,6 @@ module.exports = {
   NestedForm,
   validations,
   connectField,
+  connectButton,
 };
 
