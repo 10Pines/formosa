@@ -1,0 +1,59 @@
+{
+  "name": "formosa-material-ui-v0",
+  "version": "0.6.11",
+  "description": "material-ui components wrapped for formosa",
+  "author": "Lucas David Traverso <lucas6246@gmail.com>",
+  "license": "GPL-3.0",
+  "repository": "https://github.com/10Pines/formosa/tree/master/packages/formosa-material-ui",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "echo No tests here",
+    "lint": "eslint --ext .jsx,.js lib/**",
+    "publish:formosa": "formosa-publish",
+    "clean": "rm -rf dist || true"
+  },
+  "keywords": [
+    "react",
+    "forms",
+    "validation"
+  ],
+  "main": "./dist/formosa.iife.js",
+  "module": "./dist/formosa.module.js",
+  "browser": "./dist/formosa.umd.js",
+  "files": [
+    "models",
+    "validations",
+    "components",
+    "index.js"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "formosa-tools": "^0.6.8",
+    "prop-types": "^15.5.10",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "rollup": "^0.66.1",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-local-resolve": "^1.0.7",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-terser": "^2.0.2",
+    "rollup-plugin-uglify": "^6.0.0",
+    "source-map-explorer": "^1.6.0",
+    "material-ui": "0.20.1"
+  },
+  "dependencies": {
+    "formosa": "^0.6.11"
+  },
+  "peerDependencies": {
+    "material-ui": "0.*.*"
+  }
+}

@@ -8,5 +8,5 @@ import { connectButton } from './connectButtonHOC';
 
 
 export const ValidatedButton = connectButton(({isValid, ...props}) =>
-  <button disabled={!isValid} {...props} />
+  <button type="submit" disabled={!isValid} {...props} />
 );

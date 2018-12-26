@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Toggle from 'material-ui/Toggle';
 
 import { NestedForm, validations } from 'formosa';
-import { Form, ValidatedTextField, ValidatedToggle, ValidatedButton } from 'formosa-material-ui';
+import { Form, ValidatedTextField, ValidatedToggle, ValidatedButton } from 'formosa-material-ui-v0';
 const { CustomValidation, notEmpty, alpha, number, noop, success, error } = validations;
 
 export default class LoginForm extends React.Component {
@@ -42,9 +42,7 @@ export default class LoginForm extends React.Component {
     return (
       <MuiThemeProvider>
         <Form
-          onInvalid={() => this.setState({isValid: false})}
           onSubmit={this.handleSubmit}
-          onValid={() => this.setState({isValid: true})}
           style={{
             border: '1px solid black',
             margin: '3em',
@@ -93,7 +91,7 @@ export default class LoginForm extends React.Component {
             floatingLabelText="Email"
             validation={notEmpty}
           />} <br/>
-          <ValidatedButton>LOGIN</ValidatedButton>
+          <ValidatedButton primary>LOGIN</ValidatedButton>
         </Form>
       </MuiThemeProvider>
     );

@@ -15,6 +15,7 @@ module.exports = {
   ValidatedButton: connectButton(function ValidatedButton({ isValid, ...props }) {
     return <RaisedButton
       {...props}
+      type="submit"
       disabled={!isValid}
     />;
   }),
