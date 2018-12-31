@@ -1,6 +1,6 @@
 {
   "name": "simple-login-material-ui-v3",
-  "version": "0.6.11",
+  "version": "0.7.0",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.7.1",
-    "formosa": "^0.6.11",
-    "formosa-material-ui-v3": "^0.6.11",
+    "formosa": "^0.7.0",
+    "formosa-material-ui-v3": "^0.7.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },

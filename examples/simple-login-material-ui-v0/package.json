@@ -1,14 +1,14 @@
 {
   "name": "simple-login-material-ui-v0",
-  "version": "0.6.11",
+  "version": "0.7.0",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "neutrino start"
   },
   "dependencies": {
-    "formosa": "^0.6.11",
-    "formosa-material-ui-v0": "^0.6.11",
+    "formosa": "^0.7.0",
+    "formosa-material-ui-v0": "^0.7.0",
     "material-ui": "^0.20.1",
     "react": "^15.1.1",
     "react-dom": "^15.1.1"

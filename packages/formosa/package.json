@@ -1,6 +1,6 @@
 {
   "name": "formosa",
-  "version": "0.6.11",
+  "version": "0.7.0",
   "description": "Simple and composable validations for react",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
@@ -47,7 +47,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.3.0",
-    "formosa-tools": "^0.6.8",
+    "formosa-tools": "^0.7.0",
     "jest": "^23.6.0",
     "jest-enzyme": "^7.0.0",
     "jest-plugin-action": "^2.9.0",

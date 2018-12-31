@@ -1,6 +1,6 @@
 {
   "name": "angular-simple",
-  "version": "0.6.11",
+  "version": "0.7.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "core-js": "^2.5.4",
-    "ngx-formosa": "^0.6.11",
+    "ngx-formosa": "^0.7.0",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
