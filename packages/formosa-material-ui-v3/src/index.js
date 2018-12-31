@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form, connectField, connectButton, validations } from 'formosa';
-import { TextField, Toggle, RaisedButton } from 'material-ui';
+import { TextField } from '@material-ui/core';
+// import { Toggle } from 'material-ui/core';
+import { Button } from '@material-ui/core';
 
 module.exports = {
   Form,
@@ -9,20 +11,21 @@ module.exports = {
   ValidatedTextField: connectField(function ValidatedTextField({ field, ...props }) {
     return <TextField
       {...props}
-      errorText={field.wasTouched && field.errorMessage}
+      error={!!(field.wasTouched && field.errorMessage)}
+      helperText={field.wasTouched && field.errorMessage}
     />;
   }),
   ValidatedButton: connectButton(function ValidatedButton({ isValid, ...props }) {
-    return <RaisedButton
+    return <Button
       {...props}
       type="submit"
       disabled={!isValid}
     />;
   }),
-  ValidatedToggle: connectField(function ValidatedToggle({ field, onChange, ...props }) {
-    return <Toggle
-      {...props}
-      onToggle={onChange}
-    />;
-  })
+  // ValidatedToggle: connectField(function ValidatedToggle({ field, onChange, ...props }) {
+  //   return <Toggle
+  //     {...props}
+  //     onToggle={onChange}
+  //   />;
+  // })
 };

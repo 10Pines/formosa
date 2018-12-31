@@ -17,7 +17,7 @@ export default {
       globals: {
         "react": 'React',
         "formosa": 'formosa',
-        "material-ui": 'material-ui',
+        "@material-ui/core": 'material-ui',
       },
     },
     { 
@@ -28,7 +28,7 @@ export default {
       globals: {
         "react": 'React',
         "formosa": 'formosa',
-        "material-ui": 'material-ui',
+        "@material-ui/core": 'material-ui',
       },
     },
     {
@@ -40,7 +40,7 @@ export default {
   external: [
     'react',
     'formosa',
-    'material-ui',
+    '@material-ui/core',
   ],
   plugins: [
     localResolve(),
