@@ -8,7 +8,6 @@ before_script:
 script:
 - npm run test
 - npm run build
-- env
 - npm whoami
 - |
   if [ -n "$TRAVIS_TAG" ]; then 
