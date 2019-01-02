@@ -19,10 +19,11 @@ export const connectField = (defaultProps) => (Component) => {
 
     constructor(originalProps) {
       super(originalProps);
-      let props = Object.assign({}, defaultProps, originalProps);
-      const defaultValue = props.defaultValue === undefined ? '' : props.defaultValue;
+
+      const defaultValue = originalProps.defaultValue || defaultProps.defaultValue;
+      const validation = originalProps.validation || defaultProps.validation;
       this.state = {
-        field: new Field(props.validation, defaultValue)
+        field: new Field(validation, defaultValue)
       };
     }
 

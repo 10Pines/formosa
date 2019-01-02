@@ -6,7 +6,7 @@ module.exports = {
   Form,
   connectField,
   validations,
-  ValidatedInput: connectField({})(function ValidatedInput({field, onChange, ...props}) {
+  ValidatedInput: connectField({defaultValue: ''})(function ValidatedInput({field, onChange, ...props}) {
     return [
       <SForm.Input
         key="_formosa_input"
