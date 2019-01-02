@@ -5,7 +5,7 @@ import { noop } from '../validations';
 
 import { Field } from '../models';
 
-export const connectField = (Component) => {
+export const connectField = (defaultProps) => (Component) => {
   @inject('formosa_form') @observer class Wrapper extends React.Component {
     static defaultProps = {
       validation: noop,
@@ -17,11 +17,12 @@ export const connectField = (Component) => {
       validation: PropTypes.object.isRequired,
     };
 
-    constructor(props) {
-      super(props);
-      const defaultValue = this.props.defaultValue === undefined ? '' : this.props.defaultValue;
+    constructor(originalProps) {
+      super(originalProps);
+      let props = Object.assign({}, defaultProps, originalProps);
+      const defaultValue = props.defaultValue === undefined ? '' : props.defaultValue;
       this.state = {
-        field: new Field(this.props.validation, defaultValue)
+        field: new Field(props.validation, defaultValue)
       };
     }
 

@@ -6,7 +6,7 @@ module.exports = {
   Form,
   connectField,
   validations,
-  ValidatedTextField: connectField(function ValidatedTextField({ field, ...props }) {
+  ValidatedTextField: connectField({defaultValue: ''})(function ValidatedTextField({ field, ...props }) {
     return <TextField
       {...props}
       errorText={field.wasTouched && field.errorMessage}
@@ -19,9 +19,10 @@ module.exports = {
       disabled={!isValid}
     />;
   }),
-  ValidatedToggle: connectField(function ValidatedToggle({ field, onChange, ...props }) {
+  ValidatedToggle: connectField({defaultValue: false, validation: validations.noop})(function ValidatedToggle({ field, onChange, value, ...props }) {
     return <Toggle
       {...props}
+      toggled={value}
       onToggle={onChange}
     />;
   })

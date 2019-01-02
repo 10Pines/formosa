@@ -10,27 +10,17 @@ const { CustomValidation, notEmpty, alpha, number, noop, success, error } = vali
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmut = this.handleSubmit.bind(this);
     this.state = {
-      isValid: false,
       shouldShowEmail: false,
     };
   }
 
   handleSubmit(loginData) {
-    /*
-    Do whatever you want to do here.
-
-    The object will follow the form's structure so
-    loginData will be an object with 'username' and 
-    'password' properties, eg:
-
-    {
-      username: 'ludat',
-      password: 'super secret'
+    if (window.formSubmitted) {
+      window.formSubmitted(loginData)
+    } else {
+      console.log(loginData);
     }
-    */
-    console.log(loginData);
   }
 
   componentDidCatch(error, info) {
@@ -71,19 +61,21 @@ export default class LoginForm extends React.Component {
           >
             <ValidatedTextField
               name="value"
+              type="password"
               floatingLabelText="Password"
               validation={notEmpty}
             /> <br/>
             <ValidatedTextField
               name="confirmation"
+              type="password"
               floatingLabelText="Confirmation"
               validation={noop}
             /> <br/>
           </NestedForm>
-          <Toggle
+          <ValidatedToggle
             name="isAdmin"
-            onToggle={(evt, shouldShowEmail) => {
-              this.setState({shouldShowEmail});
+            onToggle={(evt, field) => {
+              this.setState({shouldShowEmail: field.value});
             }}
           />
           {this.state.shouldShowEmail && <ValidatedTextField

@@ -7,6 +7,7 @@
   "repository": "https://github.com/10Pines/formosa/tree/master/packages/formosa",
   "scripts": {
     "build": "rollup -c",
+    "build:watch": "npm run build -- --watch",
     "test": "jest",
     "lint": "eslint --ext .jsx,.js src/**",
     "publish:formosa": "formosa-publish",

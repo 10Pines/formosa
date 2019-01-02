@@ -1,37 +1,30 @@
 import React from 'react';
 
+import 'semantic-ui-css/semantic.min.css';
+
 import { NestedForm, validations } from 'formosa';
-import { Form, ValidatedTextField, ValidatedSwitch, ValidatedButton } from 'formosa-material-ui-v3';
+import { Form, ValidatedInput, ValidatedCheckbox, ValidatedButton } from 'formosa-semantic-ui-react';
 const { CustomValidation, notEmpty, alpha, number, noop, success, error } = validations;
 
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmut = this.handleSubmit.bind(this);
     this.state = {
       shouldShowEmail: false,
     };
   }
 
   handleSubmit(loginData) {
-    /*
-    Do whatever you want to do here.
-
-    The object will follow the form's structure so
-    loginData will be an object with 'username' and 
-    'password' properties, eg:
-
-    {
-      username: 'ludat',
-      password: 'super secret'
+    if (window.formSubmitted) {
+      window.formSubmitted(loginData)
+    } else {
+      console.log(loginData);
     }
-    */
-    console.log(loginData);
   }
 
   componentDidCatch(error, info) {
-    console.error('error', error);
-    console.warn('info', info);
+    console.log('error', error);
+    console.log('info', info);
   }
 
   render() {
@@ -43,9 +36,8 @@ export default class LoginForm extends React.Component {
           margin: '3em',
         }}
       >
-        <ValidatedTextField
+        <ValidatedInput
           name="username"
-          label="Username"
           validation={notEmpty.and(alpha).withError('Please insert a valid username')}
         /> <br/>
         <NestedForm
@@ -64,22 +56,28 @@ export default class LoginForm extends React.Component {
             </div>
           }
         >
-          <ValidatedTextField
+          <ValidatedInput
             name="value"
-            label="Password"
+            type="password"
             validation={notEmpty}
           /> <br/>
-          <ValidatedTextField
+          <ValidatedInput
             name="confirmation"
-            label="Confirmation"
+            type="password"
             validation={noop}
           /> <br/>
         </NestedForm>
-        <ValidatedSwitch
+        <ValidatedCheckbox
           name="isAdmin"
-          validation={noop}
+          onToggle={(evt, field) => {
+            this.setState({shouldShowEmail: field.value});
+          }}
         />
-        <ValidatedButton color="primary">LOGIN</ValidatedButton>
+        {this.state.shouldShowEmail && <ValidatedInput
+          name="email"
+          validation={notEmpty}
+        />} <br/>
+        <ValidatedButton primary>LOGIN</ValidatedButton>
       </Form>
     );
   }
