@@ -39,6 +39,10 @@ export class NestedForm extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.state.form.delete();
+  }
+
   render () {
     const { form } = this.state;
 
