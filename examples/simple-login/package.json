@@ -1,13 +1,13 @@
 {
   "name": "simple-login",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "neutrino start"
   },
   "dependencies": {
-    "formosa": "^0.7.0",
+    "formosa": "^0.8.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },
