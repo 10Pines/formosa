@@ -18,14 +18,12 @@
     "forms",
     "validation"
   ],
-  "main": "./dist/formosa.iife.js",
-  "module": "./dist/formosa.module.js",
-  "browser": "./dist/formosa.umd.js",
+  "main": "./dist/index.iife.js",
+  "module": "./dist/index.module.js",
+  "browser": "./dist/index.umd.js",
   "files": [
-    "models",
-    "validations",
-    "components",
-    "index.js"
+    "src",
+    "dist"
   ],
   "devDependencies": {
     "@babel/cli": "^7.0.0",
