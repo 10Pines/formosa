@@ -1,6 +1,6 @@
 {
   "name": "formosa-material-ui-v0",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "material-ui components wrapped for formosa",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "license": "GPL-3.0",
@@ -48,7 +48,7 @@
     "source-map-explorer": "^1.6.0"
   },
   "dependencies": {
-    "formosa": "^0.8.0"
+    "formosa": "^0.8.1"
   },
   "peerDependencies": {
     "material-ui": "0.*.*"
