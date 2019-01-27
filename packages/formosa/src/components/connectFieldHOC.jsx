@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
-import { noop } from '../validations';
 
+import { noop } from '../validations';
 import { Field } from '../models';
 
 export const connectField = (defaultProps) => (Component) => {
@@ -11,7 +11,7 @@ export const connectField = (defaultProps) => (Component) => {
       validation: noop,
     }
     static propTypes = {
-      defaultValue: PropTypes.any,
+      initialValue: PropTypes.any,
       name: PropTypes.string.isRequired,
       onChange: PropTypes.func,
       validation: PropTypes.object.isRequired,
@@ -20,10 +20,11 @@ export const connectField = (defaultProps) => (Component) => {
     constructor(originalProps) {
       super(originalProps);
 
-      const defaultValue = originalProps.defaultValue || defaultProps.defaultValue;
+      const initialValue = originalProps.initialValue || defaultProps.initialValue;
       const validation = originalProps.validation || defaultProps.validation;
+
       this.state = {
-        field: new Field(validation, defaultValue)
+        field: new Field(validation, initialValue)
       };
     }
 
@@ -46,9 +47,10 @@ export const connectField = (defaultProps) => (Component) => {
     }
 
     render () {
-      const { field } = this.state
+      const { field } = this.state;
       const newProps = Object.assign({}, this.props);
       newProps.field = field;
+      delete newProps.initialValue;
       delete newProps.onValid;
       delete newProps.onChange;
       delete newProps.validation;

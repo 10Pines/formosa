@@ -6,7 +6,7 @@ module.exports = {
   Form,
   connectField,
   validations,
-  ValidatedInput: connectField({defaultValue: ''})(function ValidatedInput({field, onChange, ...props}) {
+  ValidatedInput: connectField({initialValue: ''})(function ValidatedInput({field, onChange, ...props}) {
     return [
       <SForm.Input
         key="_formosa_input"
@@ -23,7 +23,7 @@ module.exports = {
       /> : null,
     ];
   }),
-  ValidatedCheckbox: connectField({defaultValue: false})(function ValidatedCheckbox({field, value, onChange, ...props}) {
+  ValidatedCheckbox: connectField({initialValue: false})(function ValidatedCheckbox({field, value, onChange, ...props}) {
     return <Checkbox
       {...props}
       checked={value}
