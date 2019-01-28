@@ -1,0 +1,18 @@
+{
+  "name": "getting-started",
+  "version": "0.8.1",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "neutrino start"
+  },
+  "dependencies": {
+    "formosa": "^0.8.1",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
+  },
+  "devDependencies": {
+    "@neutrinojs/react": "^8.0.14",
+    "neutrino": "^8.0.14"
+  }
+}

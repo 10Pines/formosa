@@ -1,0 +1,16 @@
+{
+  "docs": {
+    "Getting started": [
+      "getting-started"
+    ],
+    "Core principles": [
+      "doc2"
+    ],
+    "Components": [
+      "doc3"
+    ]
+  },
+  "docs-other": {
+    "First Category": ["doc4", "doc5"]
+  }
+}
