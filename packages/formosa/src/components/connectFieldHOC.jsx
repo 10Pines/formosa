@@ -28,8 +28,12 @@ export const connectField = (defaultProps) => (Component) => {
       };
     }
 
-    componentWillMount() {
+    componentDidMount() {
       this.props.formosa_form.registerField(this.props.name, this.state.field);
+    }
+
+    componentWillUnmount() {
+      this.state.field.delete();
     }
 
     handleNewValue (evt, newValue) {
@@ -40,10 +44,6 @@ export const connectField = (defaultProps) => (Component) => {
       } else {
         this.state.field.input = evt.target.value;
       }
-    }
-
-    componentWillUnmount() {
-      this.state.field.delete();
     }
 
     render () {

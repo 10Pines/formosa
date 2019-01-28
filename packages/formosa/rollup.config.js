@@ -17,7 +17,7 @@ export default {
       globals: {
         "react": 'React',
         "react-dom": 'ReactDOM',
-        "prop-types": 'propTypes',
+        "prop-types": 'PropTypes',
         "mobx": 'mobx',
         "mobx-react": 'mobxReact',
       },
@@ -30,7 +30,7 @@ export default {
       globals: {
         "react": 'React',
         "react-dom": 'ReactDOM',
-        "prop-types": 'propTypes',
+        "prop-types": 'PropTypes',
         "mobx": 'mobx',
         "mobx-react": 'mobxReact',
       },

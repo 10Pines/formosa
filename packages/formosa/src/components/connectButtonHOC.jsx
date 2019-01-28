@@ -13,4 +13,5 @@ export const connectButton = (Component) => {
   }
   Wrapper.displayName = `formosa-button-${Component.displayName || Component.name || 'Component'}`;
   return Wrapper;
-}
+};
+
