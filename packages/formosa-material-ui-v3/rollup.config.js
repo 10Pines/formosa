@@ -20,17 +20,6 @@ export default {
         "@material-ui/core": 'material-ui',
       },
     },
-    { 
-      file: pkg.main,
-      name: 'formosaMaterialUI',
-      format: 'iife',
-      sourcemap: true,
-      globals: {
-        "react": 'React',
-        "formosa": 'formosa',
-        "@material-ui/core": 'material-ui',
-      },
-    },
     {
       file: pkg.module,
       format: 'esm',

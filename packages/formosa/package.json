@@ -22,9 +22,8 @@
     "forms",
     "validation"
   ],
-  "main": "./dist/index.iife.js",
+  "main": "./dist/index.umd.js",
   "module": "./dist/index.module.js",
-  "browser": "./dist/index.umd.js",
   "files": [
     "src",
     "dist"

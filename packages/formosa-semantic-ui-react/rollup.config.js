@@ -20,17 +20,6 @@ export default {
         "semantic-ui-react": 'semanticUIReact',
       },
     },
-    { 
-      file: pkg.main,
-      name: 'formosaSemanticUI',
-      format: 'iife',
-      sourcemap: true,
-      globals: {
-        "react": 'React',
-        "formosa": 'formosa',
-        "semantic-ui-react": 'semanticUIReact',
-      },
-    },
     {
       file: pkg.module,
       format: 'esm',

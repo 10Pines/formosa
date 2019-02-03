@@ -1,12 +1,9 @@
 import React from 'react';
-import { Form, connectField, connectButton, validations } from 'formosa';
+export * from 'formosa';
 import { Form as SForm, Message, Checkbox, Button} from 'semantic-ui-react';
 
-module.exports = {
-  Form,
-  connectField,
-  validations,
-  ValidatedInput: connectField({initialValue: ''})(function ValidatedInput({field, onChange, ...props}) {
+export const ValidatedInput =
+  connectField({initialValue: ''})(function ValidatedInput({field, onChange, ...props}) {
     return [
       <SForm.Input
         key="_formosa_input"
@@ -22,8 +19,10 @@ module.exports = {
         content={field.errorMessage}
       /> : null,
     ];
-  }),
-  ValidatedCheckbox: connectField({initialValue: false})(function ValidatedCheckbox({field, value, onChange, ...props}) {
+  });
+
+export const ValidatedCheckbox =
+  connectField({initialValue: false})(function ValidatedCheckbox({field, value, onChange, ...props}) {
     return <Checkbox
       {...props}
       checked={value}
@@ -31,11 +30,12 @@ module.exports = {
         onChange(evt, data.checked)
       }}
     />;
-  }),
-  ValidatedButton: connectButton(function ValidatedButton({isValid, ...props}) {
+  });
+
+export const ValidatedButton =
+  connectButton(function ValidatedButton({isValid, ...props}) {
     return <Button
       disabled={! isValid}
       {...props}
     />
-  })
-};
+  });

@@ -1,21 +1,11 @@
-import { Form } from './components/Form';
-import { NestedForm } from './components/NestedForm';
-import { connectField } from './components/connectFieldHOC';
-import { connectButton } from './components/connectButtonHOC.jsx';
-import { ValidatedInput } from './components/ValidatedInput';
-import { ValidatedButton } from './components/ValidatedButton';
-import { ValidatedSelect } from './components/ValidatedSelect';
+export { Form } from './components/Form';
+export { NestedForm } from './components/NestedForm';
+export { connectField } from './components/connectFieldHOC';
+export { connectButton } from './components/connectButtonHOC';
+export { ValidatedInput } from './components/ValidatedInput';
+export { ValidatedButton } from './components/ValidatedButton';
+export { ValidatedSelect } from './components/ValidatedSelect';
 
 import * as validations from './validations';
-
-module.exports = {
-  Form,
-  ValidatedButton,
-  ValidatedInput,
-  ValidatedSelect,
-  NestedForm,
-  validations,
-  connectField,
-  connectButton,
-};
+export { validations };
 

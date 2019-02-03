@@ -23,19 +23,6 @@ export default {
       },
     },
     {
-      file: pkg.main,
-      name: 'formosa',
-      format: 'iife',
-      sourcemap: true,
-      globals: {
-        "react": 'React',
-        "react-dom": 'ReactDOM',
-        "prop-types": 'PropTypes',
-        "mobx": 'mobx',
-        "mobx-react": 'mobxReact',
-      },
-    },
-    {
       file: pkg.module,
       format: 'esm',
       sourcemap: true,
