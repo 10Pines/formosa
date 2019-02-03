@@ -10,7 +10,7 @@ export default {
   input: 'src/index.js',
   output: [
     {
-      file: pkg.browser,
+      file: pkg.main,
       format: 'umd',
       name: 'formosaMaterialUI',
       sourcemap: true,
