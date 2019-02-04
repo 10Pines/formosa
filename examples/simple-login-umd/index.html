@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simple login</title>
+<script src="https://cdn.jsdelivr.net/npm/prop-types@15.6.2/prop-types.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@16.7.0/umd/react.development.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mobx@5.9.0/lib/mobx.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mobx-react@5.4.3/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/formosa@0.9.1/dist/index.umd.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.3.1/babel.js"></script>
+<script type="text/babel" data-presets="es2015,react">
+
+const { Form, ValidatedInput, ValidatedButton, validations } = formosa;
+const { notEmpty, alpha } = validations;
+
+const LoginForm = () => (
+  <Form
+    onSubmit={(loginData) => {
+       alert(JSON.stringify(loginData, null, 2));
+    }}
+  >
+    Username:
+    <ValidatedInput
+      name="username"
+      validation={notEmpty.then(alpha).withError('Invalid!!!')}
+    /> <br/>
+    Password:
+    <ValidatedInput
+      name="password"
+      type="password"
+    /> <br/>
+    <ValidatedButton>LOGIN</ValidatedButton> <br/>
+  </Form>
+ )
+
+ReactDOM.render(<LoginForm />, document.getElementById('root'));
+
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
