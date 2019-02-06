@@ -70,6 +70,6 @@
     "mobx-react": "^5.2.8"
   },
   "peerDependencies": {
-    "react": "^16.0.0 | ^15.0.0"
+    "react": "^16.0.0 || ^15.0.0"
   }
 }

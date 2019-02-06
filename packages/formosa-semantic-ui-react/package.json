@@ -48,7 +48,10 @@
     "source-map-explorer": "^1.6.0"
   },
   "dependencies": {
-    "formosa": "^0.10.0",
-    "semantic-ui-react": "^0.82.1"
+    "formosa": "^0.10.0"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "semantic-ui-react": "<1.0.0"
   }
 }

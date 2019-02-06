@@ -52,6 +52,7 @@
     "formosa": "^0.10.0"
   },
   "peerDependencies": {
-    "@material-ui/core": "^3.*.*"
+    "react": "^15.0.0 || ^16.0.0",
+    "@material-ui/core": "^3.0.0"
   }
 }
