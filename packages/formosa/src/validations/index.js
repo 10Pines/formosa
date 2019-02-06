@@ -187,9 +187,25 @@ export class PipeValidation extends Validation {
   }
 }
 
+export class NotEqualsValidation extends Validation {
+  constructor(badValue) {
+    super();
+    this.badValue = badValue;
+  }
+
+  validate(value) {
+    if (this.badValue !== value) {
+      return success(value);
+    } else {
+      return error(`The value should be different from ${this.badValue}`);
+    }
+  }
+}
+
 export const never = new NeverValidation();
 export const alpha = new AlphaValidation();
 export const noop = new NullValidation();
 export const notEmpty = new NotEmptyValidation();
 export const number = new FloatValidation();
 export const formValidation = new FormValidation();
+export const notEquals = (badValue) => new NotEqualsValidation(badValue);
