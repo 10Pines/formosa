@@ -1,7 +1,7 @@
 import React from 'react';
 export * from 'formosa';
 import { connectField, connectButton, validations } from 'formosa';
-import { TextField, Button, Switch } from '@material-ui/core';
+import { TextField, Button, Switch, Select } from '@material-ui/core';
 
 export const ValidatedTextField =
   connectField({initialValue: ''})(function ValidatedTextField({ field, ...props }) {
@@ -27,4 +27,14 @@ export const ValidatedSwitch =
       {...props}
       checked={value}
     />;
+  });
+
+export const ValidatedSelect =
+  connectField({initialValue: '', validation: validations.notEquals('')})(function ValidatedSelect({field, onChange, ...props }) {
+    return <Select
+      {...props}
+      onChange={(evt) => {
+        onChange(evt)
+      }}
+    />
   });

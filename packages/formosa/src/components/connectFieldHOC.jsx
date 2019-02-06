@@ -7,9 +7,6 @@ import { Field } from '../models';
 
 export const connectField = (defaultProps) => (Component) => {
   @inject('formosa_form') @observer class Wrapper extends React.Component {
-    static defaultProps = {
-      validation: noop,
-    }
     static propTypes = {
       initialValue: PropTypes.any,
       name: PropTypes.string.isRequired,
