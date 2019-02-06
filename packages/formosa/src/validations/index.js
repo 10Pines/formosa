@@ -41,6 +41,10 @@ export class Validation {
   withError(errorMessage) {
     return new WithErrorValidation(this, errorMessage);
   };
+
+  otherwise(defaultValue) {
+    return new OtherwiseValidation(this, defaultValue);
+  }
 }
 
 export class WithErrorValidation extends Validation {
@@ -200,6 +204,25 @@ export class NotEqualsValidation extends Validation {
       return error(`The value should be different from ${this.badValue}`);
     }
   }
+}
+
+export class OtherwiseValidation extends Validation {
+  constructor(validation, defaultValue) {
+    super();
+    this.defaultValue = defaultValue;
+    this.validation = validation;
+  }
+
+  validate(value) {
+    let result = this.validation.validate(value);
+
+    if (result.isValid) {
+      return result;
+    } else {
+      return success(this.defaultValue);
+    }
+  }
+
 }
 
 export const never = new NeverValidation();
