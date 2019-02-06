@@ -1,37 +1,20 @@
 import React from 'react';
 
 import { NestedForm, validations } from 'formosa';
-import { Form, ValidatedTextField, ValidatedSwitch, ValidatedButton } from 'formosa-material-ui-v3';
+import { Form, ValidatedTextField, ValidatedSwitch, ValidatedButton, ValidatedSelect } from 'formosa-material-ui-v3';
+import { MenuItem } from '@material-ui/core';
 const { CustomValidation, notEmpty, alpha, number, noop, success, error } = validations;
 
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmut = this.handleSubmit.bind(this);
     this.state = {
       shouldShowEmail: false,
     };
   }
 
-  handleSubmit(loginData) {
-    /*
-    Do whatever you want to do here.
-
-    The object will follow the form's structure so
-    loginData will be an object with 'username' and 
-    'password' properties, eg:
-
-    {
-      username: 'ludat',
-      password: 'super secret'
-    }
-    */
+  handleSubmit = (loginData) => {
     console.log(loginData);
-  }
-
-  componentDidCatch(error, info) {
-    console.error('error', error);
-    console.warn('info', info);
   }
 
   render() {
@@ -75,10 +58,13 @@ export default class LoginForm extends React.Component {
             validation={noop}
           /> <br/>
         </NestedForm>
-        <ValidatedSwitch
-          name="isAdmin"
-          validation={noop}
-        />
+        <ValidatedSelect name="type">
+          <MenuItem value="ceo">CEO</MenuItem>
+          <MenuItem value="sales">Sales</MenuItem>
+          <MenuItem value="dev">Developer</MenuItem>
+          <MenuItem value="devops">DevOps</MenuItem>
+        </ValidatedSelect>
+        <ValidatedSwitch name="isAdmin" />
         <ValidatedButton color="primary">LOGIN</ValidatedButton>
       </Form>
     );
