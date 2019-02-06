@@ -1,5 +1,6 @@
 import React from 'react';
 export * from 'formosa';
+import { connectField, connectButton, validations } from 'formosa'
 import { Form as SForm, Message, Checkbox, Button} from 'semantic-ui-react';
 
 export const ValidatedInput =

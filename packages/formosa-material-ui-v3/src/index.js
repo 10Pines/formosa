@@ -1,5 +1,6 @@
 import React from 'react';
 export * from 'formosa';
+import { connectField, connectButton, validations } from 'formosa';
 import { TextField, Button, Switch } from '@material-ui/core';
 
 export const ValidatedTextField =
