@@ -1,6 +1,6 @@
 {
   "name": "formosa-slides",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "private": true,
   "main": "index.js",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "lint": "neutrino lint"
   },
   "dependencies": {
-    "formosa": "^0.10.0",
+    "formosa": "^0.10.1",
     "normalize.css": "^8.0.0",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",

@@ -1,13 +1,13 @@
 {
   "name": "getting-started",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "neutrino start"
   },
   "dependencies": {
-    "formosa": "^0.10.0",
+    "formosa": "^0.10.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },
