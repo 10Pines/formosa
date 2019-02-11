@@ -5,7 +5,7 @@
   "description": "Utility scripts",
   "author": "Lucas David Traverso <lucas6246@gmail.com>",
   "bin": {
-    "formosa-publish": "./src/publish.js"
+    "formosa-publish": "./bin/publish.js"
   },
   "devDependencies": {
     "find-up": "^3.0.0"

@@ -6,12 +6,20 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/10Pines/formosa/tree/master/packages/formosa-material-ui",
   "scripts": {
-    "build": "rollup -c",
+    "build": "node --preserve-symlinks node_modules/.bin/rollup -c",
     "build:watch": "npm run build -- --watch",
     "test": "echo No tests here",
-    "lint": "eslint --ext .jsx,.js lib/**",
+    "lint": "eslint --ext .jsx,.js src/**",
     "publish:formosa": "formosa-publish",
     "clean": "rm -rf dist || true"
+  },
+  "build": {
+    "name": "formosaMaterialUI",
+    "globals": {
+      "react": "React",
+      "formosa": "formosa",
+      "material-ui": "material-ui"
+    }
   },
   "keywords": [
     "react",

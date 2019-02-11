@@ -6,7 +6,7 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/10Pines/formosa/tree/master/packages/formosa",
   "scripts": {
-    "build": "rollup -c",
+    "build": "node --preserve-symlinks node_modules/.bin/rollup -c",
     "build:watch": "npm run build -- --watch",
     "test": "jest",
     "lint": "eslint --ext .jsx,.js src/**",
@@ -16,6 +16,16 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/setupJest.js",
     "rootDir": "src"
+  },
+  "build": {
+    "name": "formosa",
+    "globals": {
+      "react": "React",
+      "react-dom": "ReactDOM",
+      "prop-types": "PropTypes",
+      "mobx": "mobx",
+      "mobx-react": "mobxReact"
+    }
   },
   "keywords": [
     "react",
