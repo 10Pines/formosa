@@ -1,3 +1,5 @@
+This library is unmaintained, I no longer use it since I've stopped using react
+
 # Formosa
 
 [![Build Status](https://travis-ci.org/10Pines/formosa.svg?branch=master)](https://travis-ci.org/10Pines/formosa)
